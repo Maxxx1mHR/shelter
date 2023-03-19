@@ -1,0 +1,37 @@
+.not-only {
+    padding-top: 60px;
+}
+.not-only__wrapper {
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.not-only__content {
+    padding: 163px 42px 0 0;
+}
+
+.not-only__title {
+    margin-right: 150px;
+    color: $color-light;
+    @extend %font-add;
+    @include font($size: 4.4rem, $height: 5.7rem);
+}
+
+.not-only__text {
+    margin-top: 42px;
+    color: $color-dark-light;
+    @include font($size: 1.5rem, $height: 2.4rem);
+}
+
+.not-only__button {
+    margin-top: 42px;
+    // padding: 15px 45px;
+    // color: $color-text-button;
+    // border-radius: 100px;
+    // background-color: $color-primary;
+    // border: none;
+    // @extend %font-add;
+    // @include font($size: 1.7rem, $height: 2.2rem);
+    // letter-spacing: 1px;
+}

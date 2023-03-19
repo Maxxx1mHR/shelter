@@ -1,0 +1,30 @@
+.button {
+    padding: 15px 45px;
+    color: $color-text-button;
+    border-radius: 100px;
+    @extend %font-add;
+    @include font($size: 1.7rem, $height: 2rem);
+    background-color: $color-active;
+    border: 2px solid $color-primary;
+    letter-spacing: 1px;
+    &_colored{
+        background-color: $color-primary;
+        border: none;
+    }
+}
+
+.prev-button, .next-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 0;
+    width: 52px;
+    height: 52px;
+}
+.prev-button {
+    margin-left: 35px;
+}
+.next-button {
+    margin-right: 35px;
+}

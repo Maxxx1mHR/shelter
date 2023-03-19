@@ -1,0 +1,30 @@
+.about {
+    padding: 80px 0 100px 0;
+    background-color: $color-light;
+}
+.about__wrapper {
+    padding: 0 215px;
+}
+
+.about__img {
+    max-height: 408px;
+    padding-right: 120px
+}
+
+.about__content {
+    padding: 14px 0;
+}
+
+.about__title {
+    padding-right: 60px;
+}
+
+.about__text {
+    margin-top: 25px;
+    @include font($size: 1.5rem, $height: 2.4rem);
+    color: $color-dark-additional;
+    span {
+        display: block;
+        margin-top: 25px;
+    }
+}

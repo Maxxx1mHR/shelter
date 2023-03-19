@@ -1,0 +1,49 @@
+.footer {
+    padding-top: 40px;
+}
+.footer__wrapper {
+    display: flex;
+    padding: 0 40px;
+    justify-content: space-between;
+}
+
+.footer__contacts {
+    max-width: 278px;
+}
+.footer__address {
+    max-width: 302px;
+}
+
+.footer__address .footer__links li {
+    margin-top: 34px;
+}
+
+.footer__title {
+    margin-top: 16px;
+    @extend %font-add;
+    @include font($size: 3.5rem, $height: 4.5rem);
+    letter-spacing: 2px;
+    color: $color-light
+}
+
+.footer__links {
+    list-style-type: none;
+    @extend %font-add;
+    @include font($size: 2rem, $height: 2.3rem);
+    letter-spacing: 1px;
+    li {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 43px;
+    }
+}
+
+.footer__icon {
+    margin-right: 20px;
+}
+
+.footer__link {
+    text-decoration: none;
+    color: $color-primary;
+}

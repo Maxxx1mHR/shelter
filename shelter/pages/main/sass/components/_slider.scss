@@ -1,0 +1,37 @@
+.slider {
+    display: flex;
+    padding: 60px 0;
+    justify-content: space-between;
+    align-items: center;
+}
+.slider__wrapper {
+
+}
+
+.slider__item {
+    margin: 0 45px;
+    background-color: $color-active;
+}
+
+
+.slider__name-pet {
+    @extend %font-add;
+    @include font($size: 2rem, $height: 2.3rem);
+    color: $color-dark-main;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.slider__button {
+    display: block;
+    margin: 30px auto;
+}
+
+.our-friends__button {
+    display: block;
+    margin: 0 auto;
+}
+
+.slider__arrow {
+
+}

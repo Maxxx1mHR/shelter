@@ -1,0 +1,27 @@
+.header {
+    padding-top: 60px;
+}
+
+.header__wrapper {
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo-name {
+    color: $color-primary;
+    @extend %font-add;
+    @include font($size: 3.2rem, $height: 3.5rem);
+    letter-spacing: 2px;
+    text-decoration: none;
+    @extend %cursor-hover;
+}
+
+.header__subtitle {
+    margin: 10px 0 0 2px;
+    color: $color-light;
+    @include font($size: 1.3rem, $height: 1.5rem,);
+    letter-spacing: 1.5px;
+}
+

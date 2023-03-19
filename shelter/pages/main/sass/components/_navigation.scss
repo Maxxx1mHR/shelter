@@ -1,0 +1,29 @@
+.navigation {
+    list-style-type: none;
+    display: flex;
+    color: $color-dark-light;
+    @include font ($size: 1.5rem, $height: 2.4rem);
+}
+.navigation__link {
+    position: relative;
+    &:not(:last-child) {
+        margin-right: 35px;
+    }
+    @extend %cursor-hover;
+    @extend %link-active;
+    // &::before {
+    //     content: '';
+    //     position: absolute;
+    //     width: 0;
+    //     height: 3px;
+    //     background-color: $color-primary;
+    //     top: 25px;
+    //     transition: width .5s;
+    // }
+    // &:hover {
+    //     cursor: url("../../../assets/icons/cursors/cursor_active.svg"), auto;
+    //     &::before {
+    //         width: 100%;
+    //     }
+    // }
+}
