@@ -1,5 +1,5 @@
 .header {
-    padding-top: 30px;
+    padding: 30px 0 30px 0;
 }
 
 .header__wrapper {
@@ -10,7 +10,7 @@
 }
 
 .header__logo-name {
-    color: $color-primary;
+    color: $color-dark-main;
     @extend %font-add;
     @include font($size: 3.2rem, $height: 3.5rem);
     letter-spacing: 2px;
@@ -20,7 +20,7 @@
 
 .header__subtitle {
     margin: 10px 0 0 2px;
-    color: $color-light;
+    color: $color-text-button;
     @include font($size: 1.3rem, $height: 1.5rem,);
     letter-spacing: 1.5px;
 }

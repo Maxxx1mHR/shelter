@@ -1,0 +1,43 @@
+.our-friends {
+    padding: 80px 0 100px 0;
+    background-color: $color-background-light;
+}
+.our-friends__title {
+    text-indent: 60px;
+    margin: 0 auto;
+    max-width: 400px;
+    letter-spacing: 2px;
+}
+
+.our-friends__wrapper {
+    padding: 60px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 30px;
+}
+
+.our-friends__item {
+    background-color: $color-light;
+}
+
+.our-friends__name-pet {
+    @extend %font-add;
+    @include font($size: 2rem, $height: 1.9rem);
+    color: $color-dark-main;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.our-friends__navigation {
+    max-width: 340px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.our-friends__button {
+    display: block;
+    margin: 30px auto;
+    background-color: $color-light;
+}
