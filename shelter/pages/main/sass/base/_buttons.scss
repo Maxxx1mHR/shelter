@@ -1,15 +1,24 @@
 .button {
-    padding: 15px 45px;
-    color: $color-text-button;
+    // padding: 15px 45px;
+    // color: $color-text-button;
     border-radius: 100px;
     @extend %font-add;
     @include font($size: 1.7rem, $height: 2rem);
     background-color: $color-active;
     border: 2px solid $color-primary;
     letter-spacing: 1px;
+    @extend %cursor-hover;
     &_colored{
         background-color: $color-primary;
         border: none;
+    }
+    a {
+        color: $color-text-button;
+        padding: 15px 45px;
+        text-align: center;
+        display: block;
+        text-decoration: none;
+        // @extend %cursor-hover;
     }
 }
 

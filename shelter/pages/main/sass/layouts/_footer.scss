@@ -14,7 +14,7 @@
     max-width: 302px;
 }
 
-.footer__address .footer__links li {
+.footer__address .footer__links li a{
     margin-top: 34px;
 }
 
@@ -31,12 +31,12 @@
     @extend %font-add;
     @include font($size: 2rem, $height: 2.3rem);
     letter-spacing: 1px;
-    li {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin-top: 43px;
-    }
+    // li {
+    //     display: flex;
+    //     justify-content: flex-start;
+    //     align-items: center;
+    //     margin-top: 43px;
+    // }
 }
 
 .footer__icon {
@@ -44,6 +44,8 @@
 }
 
 .footer__link {
+    display: flex;
+    margin-top: 43px;
     text-decoration: none;
     color: $color-primary;
 }

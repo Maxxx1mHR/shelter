@@ -31,6 +31,7 @@
     background-color: $color-primary;
     border-radius: 9px;
     letter-spacing: 1px;
+    text-decoration: none;
     span {
         @extend %font-add;
         @include font($size: 2rem, $height: 2.3rem);
