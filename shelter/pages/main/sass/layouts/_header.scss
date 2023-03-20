@@ -10,12 +10,16 @@
 }
 
 .header__logo-name {
+    position: relative;
     color: $color-primary;
     @extend %font-add;
     @include font($size: 3.2rem, $height: 3.5rem);
     letter-spacing: 2px;
     text-decoration: none;
     @extend %cursor-hover;
+    &:before {
+        top: 37px;
+    }
 }
 
 .header__subtitle {

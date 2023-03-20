@@ -1,6 +1,7 @@
 .button {
-    // padding: 15px 45px;
-    // color: $color-text-button;
+    display: inline-block;
+    padding: 15px 45px;
+    color: $color-text-button;
     border-radius: 100px;
     @extend %font-add;
     @include font($size: 1.7rem, $height: 2rem);
@@ -8,17 +9,16 @@
     border: 2px solid $color-primary;
     letter-spacing: 1px;
     @extend %cursor-hover;
-    &_colored{
+    text-decoration: none;
+    &_colored {
         background-color: $color-primary;
         border: none;
     }
-    a {
-        color: $color-text-button;
-        padding: 15px 45px;
-        text-align: center;
-        display: block;
-        text-decoration: none;
-        // @extend %cursor-hover;
+    &_hover {
+        transition: background-color .5s;
+        &:hover{
+            background-color: $color-primary-light;
+        }
     }
 }
 
@@ -37,3 +37,4 @@
 .next-button {
     margin-right: 35px;
 }
+
