@@ -27,7 +27,7 @@ h2 {
     margin: 0 auto;
 }
 
-.item-active {
+.item-hover {
     transition: color .5s;
     &::before {
         content: '';

@@ -10,6 +10,7 @@
     padding: 11px 30px 10px 0;
 }
 
+
 .in-addition__header {
     margin-right: 80px;
 }
@@ -32,11 +33,16 @@
     border-radius: 9px;
     letter-spacing: 1px;
     text-decoration: none;
+    transition: transform .5s;
+    &:hover {
+        transform: scale(1.1);
+    }
     span {
         @extend %font-add;
         @include font($size: 2rem, $height: 2.3rem);
         color: $color-dark-main;
     }
+    
 }
 
 .in-addition__description {

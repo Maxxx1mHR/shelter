@@ -391,11 +391,11 @@ h2 {
   margin: 0 auto;
 }
 
-.item-active {
+.item-hover {
   -webkit-transition: color 0.5s;
   transition: color 0.5s;
 }
-.item-active::before {
+.item-hover::before {
   content: "";
   position: absolute;
   width: 0;
@@ -405,10 +405,10 @@ h2 {
   -webkit-transition: width 0.5s;
   transition: width 0.5s;
 }
-.item-active:hover {
+.item-hover:hover {
   color: #FAFAFA;
 }
-.item-active:hover::before {
+.item-hover:hover::before {
   width: 100%;
 }
 
@@ -428,13 +428,14 @@ h2 {
 }
 .button_colored {
   background-color: #F1CDB3;
-  border: none;
+  border: 2px solid #F1CDB3;
 }
 .button_hover {
-  -webkit-transition: background-color 0.5s;
-  transition: background-color 0.5s;
+  -webkit-transition: background-color 0.5s, border 0.5s;
+  transition: background-color 0.5s, border 0.5s;
 }
 .button_hover:hover {
+  border: 2px solid #FDDCC4;
   background-color: #FDDCC4;
 }
 
@@ -583,12 +584,21 @@ h2 {
 }
 
 .footer__link {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-top: 43px;
   text-decoration: none;
   color: #F1CDB3;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+.footer__link:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .navigation {
@@ -728,6 +738,8 @@ h2 {
   display: -ms-flexbox;
   display: flex;
   padding: 60px 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -736,14 +748,35 @@ h2 {
           align-items: center;
 }
 
+.slider__wrapper {
+  padding: 0 53px;
+  -webkit-column-gap: 90px;
+     -moz-column-gap: 90px;
+          column-gap: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .slider__item {
-  margin: 0 45px;
   background-color: #FAFAFA;
+  border-radius: 9px;
+}
+
+.slider__img-pet {
+  background-color: red;
+  border-top-right-radius: 9px;
+  border-top-left-radius: 9px;
 }
 
 .slider__name-pet {
   font-size: 2rem;
-  line-height: 2.3rem;
+  line-height: 2rem;
   font-weight: 400;
   font-style: normal;
   color: #545454;
@@ -755,6 +788,11 @@ h2 {
   padding: 15px 45px;
   display: block;
   margin: 30px auto;
+}
+
+.our-friends__button {
+  display: block;
+  margin: 0 auto;
 }
 
 .help {
@@ -855,6 +893,14 @@ h2 {
   border-radius: 9px;
   letter-spacing: 1px;
   text-decoration: none;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+.in-addition__card:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 .in-addition__card span {
   font-size: 2rem;

@@ -1,22 +1,33 @@
 .slider {
     display: flex;
     padding: 60px 0;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
-.slider__wrapper {
 
+.slider__wrapper {
+    padding: 0 53px;
+    column-gap: 90px;   
+    display: flex;
+    flex-wrap: wrap;   
+    justify-content: space-between; 
 }
 
 .slider__item {
-    margin: 0 45px;
-    background-color: $color-active;
+    background-color: $color-active;    
+    border-radius: 9px;
 }
 
+.slider__img-pet {
+    background-color: red;
+    border-top-right-radius: 9px;
+    border-top-left-radius: 9px;
+}
 
 .slider__name-pet {
     @extend %font-add;
-    @include font($size: 2rem, $height: 2.3rem);
+    @include font($size: 2rem, $height: 2rem);
     color: $color-dark-main;
     text-align: center;
     margin-top: 30px;
@@ -28,11 +39,8 @@
     margin: 30px auto;
 }
 
-// .our-friends__button {
-//     display: block;
-//     margin: 0 auto;
-// }
-
-.slider__arrow {
-
+.our-friends__button {
+    display: block;
+    margin: 0 auto;
 }
+
