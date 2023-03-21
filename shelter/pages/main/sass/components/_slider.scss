@@ -8,22 +8,39 @@
 
 .slider__wrapper {
     padding: 0 53px;
-    column-gap: 90px;   
+    column-gap: 90px;
     display: flex;
-    flex-wrap: wrap;   
-    justify-content: space-between; 
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .slider__item {
-    background-color: $color-active;    
+    @extend %cursor-hover;
+    background-color: $color-active;
     border-radius: 9px;
 }
 
 .slider__img-pet {
-    background-color: red;
+    transition: background-color .5s;
     border-top-right-radius: 9px;
     border-top-left-radius: 9px;
+    // &:hover {
+    //     background-color: $color-background-light;
+    // }
 }
+
+.slider__item:hover .slider__img-pet{
+    transition: background-color .5s;
+    background-color: $color-background-light;
+    // background-color: red;
+}
+
+.slider__item:hover .button_hover{
+    background-color: $color-background-light;
+    border: 2px solid $color-primary-light;
+    background-color: $color-primary-light;
+}
+
 
 .slider__name-pet {
     @extend %font-add;

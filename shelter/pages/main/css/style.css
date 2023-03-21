@@ -330,7 +330,7 @@ body {
   font-family: "Georgia", sans-serif;
 }
 
-.navigation__item:hover, .header__logo-name:hover, .button:hover, a:hover {
+.slider__item:hover, .header__logo-name:hover, .button:hover, a:hover {
   cursor: url("../../../assets/icons/cursors/cursor_active.svg"), auto;
 }
 
@@ -769,9 +769,22 @@ h2 {
 }
 
 .slider__img-pet {
-  background-color: red;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
   border-top-right-radius: 9px;
   border-top-left-radius: 9px;
+}
+
+.slider__item:hover .slider__img-pet {
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+  background-color: #F6F6F6;
+}
+
+.slider__item:hover .button_hover {
+  background-color: #F6F6F6;
+  border: 2px solid #FDDCC4;
+  background-color: #FDDCC4;
 }
 
 .slider__name-pet {

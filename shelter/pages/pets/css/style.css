@@ -330,22 +330,8 @@ body {
   font-family: "Georgia", sans-serif;
 }
 
-.navigation__link:hover, .header__logo-name:hover {
+.our-friends__item:hover, .header__logo-name:hover, .button:hover, a:hover {
   cursor: url("../../../assets/icons/cursors/cursor_active.svg"), auto;
-}
-
-.navigation__link::before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 3px;
-  background-color: #F1CDB3;
-  top: 25px;
-  -webkit-transition: width 0.5s;
-  transition: width 0.5s;
-}
-.navigation__link:hover::before {
-  width: 100%;
 }
 
 @font-face {
@@ -380,6 +366,7 @@ body {
 }
 html {
   font-size: 10px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -400,7 +387,29 @@ h2 {
   margin: 0 auto;
 }
 
+.item-hover {
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+}
+.item-hover::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background-color: #F1CDB3;
+  top: 25px;
+  -webkit-transition: width 0.5s;
+  transition: width 0.5s;
+}
+.item-hover:hover {
+  color: #292929;
+}
+.item-hover:hover::before {
+  width: 100%;
+}
+
 .button {
+  display: inline-block;
   padding: 15px 45px;
   color: #292929;
   border-radius: 100px;
@@ -411,10 +420,24 @@ h2 {
   background-color: #FAFAFA;
   border: 2px solid #F1CDB3;
   letter-spacing: 1px;
+  text-decoration: none;
 }
 .button_colored {
   background-color: #F1CDB3;
-  border: none;
+  border: 2px solid #F1CDB3;
+}
+.button_hover {
+  -webkit-transition: background-color 0.5s, border 0.5s;
+  transition: background-color 0.5s, border 0.5s;
+}
+.button_hover:hover {
+  border: 2px solid #FDDCC4;
+  background-color: #FDDCC4;
+}
+.button_inactive {
+  pointer-events: none;
+  color: #CDCDCD;
+  border: 2px solid #CDCDCD;
 }
 
 .round-button {
@@ -497,7 +520,7 @@ h2 {
   max-width: 302px;
 }
 
-.footer__address .footer__links li {
+.footer__address .footer__links li a {
   margin-top: 34px;
 }
 
@@ -519,26 +542,27 @@ h2 {
   font-style: normal;
   letter-spacing: 1px;
 }
-.footer__links li {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-top: 43px;
-}
 
 .footer__icon {
   margin-right: 20px;
 }
 
 .footer__link {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 43px;
   text-decoration: none;
   color: #F1CDB3;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+.footer__link:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .header {
@@ -559,6 +583,7 @@ h2 {
 }
 
 .header__logo-name {
+  position: relative;
   color: #545454;
   font-size: 3.2rem;
   line-height: 3.5rem;
@@ -566,6 +591,9 @@ h2 {
   font-style: normal;
   letter-spacing: 2px;
   text-decoration: none;
+}
+.header__logo-name:before {
+  top: 37px;
 }
 
 .header__subtitle {
@@ -590,11 +618,34 @@ h2 {
   font-style: normal;
 }
 
-.navigation__link {
+.navigation__item {
   position: relative;
 }
-.navigation__link:not(:last-child) {
+.navigation__item:not(:last-child) {
   margin-right: 35px;
+}
+
+.navigation__list {
+  color: #545454;
+  text-decoration: none;
+}
+
+.navigation__item_active {
+  color: #292929;
+}
+.navigation__item_active::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #F1CDB3;
+  top: 25px;
+  -webkit-transition: width 0.5s;
+  transition: width 0.5s;
+}
+
+.navigation__item_disabled {
+  pointer-events: none;
 }
 
 .our-friends {
@@ -624,6 +675,26 @@ h2 {
 
 .our-friends__item {
   background-color: #FFFFFF;
+  border-radius: 9px;
+}
+
+.our-friends__img-pet {
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+  border-top-right-radius: 9px;
+  border-top-left-radius: 9px;
+}
+
+.our-friends__item:hover .our-friends__img-pet {
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+  background-color: #F6F6F6;
+}
+
+.our-friends__item:hover .button_hover {
+  background-color: #F6F6F6;
+  border: 2px solid #FDDCC4;
+  background-color: #FDDCC4;
 }
 
 .our-friends__name-pet {
@@ -648,6 +719,7 @@ h2 {
 }
 
 .our-friends__button {
+  display: block;
   margin: 30px auto;
   background-color: #FFFFFF;
 }/*# sourceMappingURL=style.css.map */

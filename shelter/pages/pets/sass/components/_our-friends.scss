@@ -19,7 +19,27 @@
 
 .our-friends__item {
     background-color: $color-light;
+    @extend %cursor-hover;
+    border-radius: 9px;
 }
+
+.our-friends__img-pet {
+    transition: background-color .5s;
+    border-top-right-radius: 9px;
+    border-top-left-radius: 9px;
+}
+
+.our-friends__item:hover .our-friends__img-pet {
+    transition: background-color .5s;
+    background-color: $color-background-light;
+}
+
+.our-friends__item:hover .button_hover {
+    background-color: $color-background-light;
+    border: 2px solid $color-primary-light;
+    background-color: $color-primary-light;
+}
+
 
 .our-friends__name-pet {
     @extend %font-add;
@@ -37,7 +57,7 @@
 }
 
 .our-friends__button {
-    // display: block;
+    display: block;
     margin: 30px auto;
     background-color: $color-light;
 }

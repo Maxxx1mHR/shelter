@@ -1,4 +1,5 @@
 .button {
+    display: inline-block;
     padding: 15px 45px;
     color: $color-text-button;
     border-radius: 100px;
@@ -7,9 +8,24 @@
     background-color: $color-active;
     border: 2px solid $color-primary;
     letter-spacing: 1px;
-    &_colored{
+    @extend %cursor-hover;
+    text-decoration: none;
+    &_colored {
         background-color: $color-primary;
-        border: none;
+        border: 2px solid $color-primary;
+    }
+    &_hover {
+        // border: 2px solid $color-primary-light;
+        transition: background-color .5s, border .5s;
+        &:hover{
+            border: 2px solid $color-primary-light;
+            background-color: $color-primary-light;
+        }
+    }
+    &_inactive {
+        pointer-events: none;
+        color: $color-dark-light;
+        border: 2px solid $color-dark-light;
     }
 }
 
@@ -22,9 +38,11 @@
     width: 52px;
     height: 52px;
 }
+
 .prev-button {
     margin-left: 35px;
 }
 .next-button {
     margin-right: 35px;
 }
+
