@@ -326,7 +326,7 @@ body {
   font-family: "Arial", sans-serif;
 }
 
-.our-friends__name-pet, .header__logo-name, .footer__links, .footer__title, .button, h2 {
+.our-friends__name-pet, .our-friends__title, .header__logo-name, .footer__links, .footer__title, .button, h2 {
   font-family: "Georgia", sans-serif;
 }
 
@@ -657,6 +657,11 @@ h2 {
   text-indent: 60px;
   margin: 0 auto;
   max-width: 400px;
+  color: #545454;
+  font-size: 3.5rem;
+  line-height: 4.5rem;
+  font-weight: 400;
+  font-style: normal;
   letter-spacing: 2px;
 }
 
