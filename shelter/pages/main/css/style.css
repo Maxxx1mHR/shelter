@@ -766,6 +766,15 @@ h2 {
 .slider__item {
   background-color: #FAFAFA;
   border-radius: 9px;
+  -webkit-transition: background-color 0.5s, -webkit-box-shadow 0.5s;
+  transition: background-color 0.5s, -webkit-box-shadow 0.5s;
+  transition: background-color 0.5s, box-shadow 0.5s;
+  transition: background-color 0.5s, box-shadow 0.5s, -webkit-box-shadow 0.5s;
+}
+.slider__item:hover {
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+          box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 }
 
 .slider__img-pet {
@@ -773,12 +782,6 @@ h2 {
   transition: background-color 0.5s;
   border-top-right-radius: 9px;
   border-top-left-radius: 9px;
-}
-
-.slider__item:hover .slider__img-pet {
-  -webkit-transition: background-color 0.5s;
-  transition: background-color 0.5s;
-  background-color: #F6F6F6;
 }
 
 .slider__item:hover .button_hover {
