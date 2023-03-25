@@ -1,10 +1,17 @@
 .footer {
     padding-top: 40px;
+    @include media-tablet {
+        padding-top: 30px;
+    }
 }
 .footer__wrapper {
     display: flex;
     padding: 0 40px;
+    flex-wrap: wrap;
     justify-content: space-between;
+    @include media-tablet {
+        padding: 0 64px;
+    }
 }
 
 .footer__contacts {
@@ -23,13 +30,17 @@
     @extend %font-add;
     @include font($size: 3.5rem, $height: 4.5rem);
     letter-spacing: 2px;
-    color: $color-light
+    color: $color-light;
+    @include media-tablet {
+        margin: 0;
+    }
 }
 
 .footer__links {
     list-style-type: none;
     @extend %font-add;
     @include font($size: 2rem, $height: 2.3rem);
+
     letter-spacing: 1px;
     // li {
     //     display: flex;
@@ -50,7 +61,15 @@
     text-decoration: none;
     color: $color-primary;
     transition: transform .5s;
+    align-items: center;
     &:hover {
         transform: scale(1.1);
     }
+}
+
+.footer__img {
+   @include media-tablet {
+        margin: 0 auto;
+        margin-top: 65px;
+   }
 }

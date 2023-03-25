@@ -4,15 +4,35 @@
 }
 .about__wrapper {
     padding: 0 215px;
+    @include media-laptop {
+        padding: 0 169px;
+    }
+    @include media-tablet {
+        flex-direction: column-reverse;
+        align-items: center;
+        >* {
+            flex-basis: 100%;
+        }
+    }
 }
 
 .about__img {
     max-height: 408px;
-    padding-right: 120px
+    max-width: 300px;
+
+    // padding-right: 120px;
+    @include media-tablet {
+        padding-top: 80px;
+        max-height: 100%;
+    }
+
 }
 
 .about__content {
     padding: 14px 0;
+    @include media-laptop {
+        padding: 0;
+    }
 }
 
 .about__title {

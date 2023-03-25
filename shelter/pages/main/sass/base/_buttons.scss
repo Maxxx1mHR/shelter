@@ -35,9 +35,21 @@
 }
 
 .prev-button {
-    margin-left: 35px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40px;
+    @include media-tablet {
+        left: 30px;
+    }
 }
 .next-button {
-    margin-right: 35px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(100% - 90px);
+    @include media-tablet {
+        left: calc(100% - 80px);
+    }
 }
 

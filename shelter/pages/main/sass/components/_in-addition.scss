@@ -3,13 +3,26 @@
     background-color: $color-background-light;
 }
 .in-addition__wrapper {
-    padding: 0 182px;
+    // padding: 0 182px;
     display: flex;
+    justify-content: center;
+    @include media-tablet {
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 }
 .in-addition__img {
     padding: 11px 30px 10px 0;
+    max-width: 505px;
+    @include media-tablet {
+        padding: 60px 0 0 0;
+    }
 }
 
+.in-addition__content {
+    max-width: 380px;
+}
 
 .in-addition__header {
     margin-right: 80px;
@@ -42,7 +55,7 @@
         @include font($size: 2rem, $height: 2.3rem);
         color: $color-dark-main;
     }
-    
+
 }
 
 .in-addition__description {
