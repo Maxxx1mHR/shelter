@@ -1,12 +1,19 @@
 .help {
     padding: 80px 0 100px 0;
     background-color: $color-light;
+    @include media-mobile {
+        padding: 42px 0 42px 0;
+    }
 }
 
 .help__title {
     max-width: 310px;
     margin: 0 auto;
     text-align: center;
+    @include media-mobile {
+        max-width: 220px;
+        letter-spacing: 1.4px;
+    }
 }
 
 .help__items {
@@ -21,8 +28,16 @@
     @include media-tablet {
         padding: 60px 68px 0 68px;
         column-gap: 60px;
-        // justify-content: space-between;
+
     }
+    @include media-tablet-small {
+        padding: 42px 15px 0 15px;
+        column-gap: 28px;
+        row-gap: 30px;
+        justify-content: space-between;
+    }
+
+
 }
 
 .help__item {
@@ -33,8 +48,17 @@
     @include media-tablet {
         width: 170px;
     }
+    @include media-tablet-small {
+        width: 130px;
+    }
 }
 
+.help__icon {
+    @include media-tablet-small {
+        max-width: 50px;
+        max-height: 50px;
+    }
+}
 // .help__icon {
 //     display: block;
 //     margin: 0 auto;
@@ -46,4 +70,8 @@
     @include font($size: 2rem, $height: 2.2rem);
     letter-spacing: 1px;
     // text-align: center;
+    @include media-mobile {
+        @include font($size: 1.5rem, $height: 1.6rem);
+        margin-top: 20px;
+    }
 }
