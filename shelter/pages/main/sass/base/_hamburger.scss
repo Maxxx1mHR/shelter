@@ -1,0 +1,39 @@
+.hamburger {
+    display: none;
+    position: relative;
+    @include media-tablet-small {
+        display: block;
+        width: 30px;
+        height: 2px;
+        background-color: $color-primary;
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: $color-primary;
+        }
+        &::before{
+            top: 10px;
+        }
+        &::after {
+            top: -10px;
+        }
+    }
+}
+
+
+// span{
+//     display: block;
+//     width: 30px;
+//     height: 2px;
+//     background-color: $color-primary;
+//     &::before {
+//         content: '';
+//         position: absolute;
+//         top: 20px;
+//         width: 30px;
+//         height: 2px;
+//         background-color: $color-primary;
+//     }
+// }

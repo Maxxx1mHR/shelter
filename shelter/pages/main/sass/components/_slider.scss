@@ -5,6 +5,10 @@
     // flex-wrap: wrap;
     // justify-content: space-between;
     // align-items: center;
+    @include media-tablet-small {
+        padding: 42px 0 114px 0;
+    }
+
 }
 
 .slider__wrapper {
@@ -20,6 +24,12 @@
     @include media-tablet {
         padding: 0 94px;
     }
+    @include media-tablet-small {
+        padding: 0 10px;
+    }
+    @include media-mobile {
+        justify-content: center
+    }
 
 }
 
@@ -34,6 +44,11 @@
     }
     @include media-tablet {
         &:nth-child(3) {
+            display: none;
+        }
+    }
+    @include media-mobile {
+        &:nth-child(2) {
             display: none;
         }
     }

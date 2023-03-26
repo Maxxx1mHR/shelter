@@ -16,6 +16,9 @@
         flex-wrap: wrap;
         justify-content: flex-end;
     }
+    @include media-tablet-small {
+        padding: 0 10px;
+    }
 }
 
 .not-only__content {
@@ -33,12 +36,23 @@
     color: $color-light;
     @extend %font-add;
     @include font($size: 4.4rem, $height: 5.7rem);
+    @include media-mobile {
+        @include font($size: 3.5rem, $height: 3.9rem);
+        text-align: center;
+        letter-spacing: 1.5px;
+    }
+    @include media-mobile-small {
+        @include font($size: 2.5rem, $height: 3.3rem);
+    }
 }
 
 .not-only__text {
     margin-top: 42px;
     color: $color-dark-light;
     @include font($size: 1.5rem, $height: 2.4rem);
+    @include media-mobile-small {
+        text-align: center;
+    }
 }
 
 .not-only__button {
@@ -49,11 +63,18 @@
 }
 
 .not-only__image {
-    max-width: 698px;
+    // max-width: 698px;
     @include media-tablet {
         padding-top: 100px;
     }
     @include media-tablet {
+        // width: 80%;
+        width: 100%;
         max-width: 569px;
+    }
+    @include media-mobile-small {
+        // width: 80%;
+
+        max-width: 260px;
     }
 }
