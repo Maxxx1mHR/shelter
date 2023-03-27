@@ -17,13 +17,15 @@
 }
 .in-addition__img {
     padding: 11px 30px 10px 0;
-    max-width: 505px;
+    max-width: 535px;
     width: 100%;
     @include media-tablet {
         padding: 60px 0 0 0;
     }
     @include media-mobile {
         padding: 42px 0 0 0;
+    }
+    @include media-mobile-small {
         max-width: 260px;
     }
 }

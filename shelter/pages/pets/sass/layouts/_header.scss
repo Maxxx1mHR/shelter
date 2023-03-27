@@ -7,6 +7,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include media-laptop {
+        padding: 0 30px;
+    }
+    @include media-tablet-small {
+        padding: 0 20px;
+    }
 }
 
 .header__logo-name {
@@ -30,3 +36,8 @@
     letter-spacing: 1.5px;
 }
 
+.header__navigation {
+    @include media-tablet-small {
+        display: none;
+    }
+}
