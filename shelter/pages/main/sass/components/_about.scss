@@ -28,12 +28,12 @@
 
     // padding-right: 120px;
     @include media-tablet {
-        padding-top: 80px;
-        max-width: 260px;
+        margin-top: 80px;
         // max-height: 100%;
     }
     @include media-tablet-small {
-        padding-top: 42px;
+       margin-top: 42px;
+       max-width: 260px;
     }
 
 }

@@ -975,13 +975,13 @@ h2 {
 }
 @media (max-width: 992px) {
   .about__img {
-    padding-top: 80px;
-    max-width: 260px;
+    margin-top: 80px;
   }
 }
 @media (max-width: 767.9px) {
   .about__img {
-    padding-top: 42px;
+    margin-top: 42px;
+    max-width: 260px;
   }
 }
 
@@ -1306,6 +1306,7 @@ h2 {
 }
 @media (max-width: 992px) {
   .in-addition__img {
+    max-width: 505px;
     padding: 60px 0 0 0;
   }
 }

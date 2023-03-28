@@ -830,7 +830,7 @@ h2 {
     padding: 30px 94px 40px 94px;
   }
 }
-@media (max-width: 992px) {
+@media (max-width: 767.9px) {
   .our-friends__wrapper {
     padding: 42px 15px;
   }
