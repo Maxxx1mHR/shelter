@@ -37,6 +37,7 @@
 
 .header__navigation {
     @include media-tablet-small {
-        display: none;
+        // display: none;
+
     }
 }

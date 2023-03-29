@@ -424,6 +424,15 @@ h2 {
 .item-hover:hover::before {
   width: 100%;
 }
+@media (max-width: 767.9px) {
+  .item-hover::before {
+    top: 35px;
+  }
+}
+
+.no-scroll {
+  overflow: hidden;
+}
 
 .button {
   display: inline-block;
@@ -513,6 +522,7 @@ h2 {
 .hamburger {
   display: none;
   position: relative;
+  z-index: 1;
 }
 @media (max-width: 767.9px) {
   .hamburger {
@@ -534,6 +544,10 @@ h2 {
   .hamburger::after {
     top: -10px;
   }
+}
+.hamburger_active {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
 .header {
@@ -585,12 +599,6 @@ h2 {
   font-weight: 400;
   font-style: normal;
   letter-spacing: 1.5px;
-}
-
-@media (max-width: 767.9px) {
-  .header__navigation {
-    display: none;
-  }
 }
 
 .layout-3-column {
@@ -777,15 +785,47 @@ h2 {
   font-weight: 400;
   font-style: normal;
 }
-
-.navigation__item {
-  position: relative;
+@media (max-width: 767.9px) {
+  .navigation {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 320px;
+  }
+  .navigation_active {
+    right: 0;
+    background-color: #292929;
+    height: 100vh;
+    font-size: 3.2rem;
+    line-height: 5.1rem;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    z-index: 1;
+  }
 }
+
 .navigation__item:not(:last-child) {
   margin-right: 35px;
 }
+@media (max-width: 767.9px) {
+  .navigation__item:not(:last-child) {
+    margin: 0;
+    margin-bottom: 40px;
+  }
+}
 
 .navigation__list {
+  position: relative;
   color: #CDCDCD;
   text-decoration: none;
 }
@@ -802,6 +842,11 @@ h2 {
   top: 25px;
   -webkit-transition: width 0.5s;
   transition: width 0.5s;
+}
+@media (max-width: 767.9px) {
+  .navigation__item_active::before {
+    top: 35px;
+  }
 }
 
 .navigation__item_disabled {

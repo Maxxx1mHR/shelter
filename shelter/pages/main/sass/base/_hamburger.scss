@@ -1,6 +1,7 @@
 .hamburger {
     display: none;
     position: relative;
+    z-index: 1;
     @include media-tablet-small {
         display: block;
         width: 30px;
@@ -20,7 +21,12 @@
             top: -10px;
         }
     }
+    &_active {
+        transform: rotate(90deg);
+    }
 }
+
+
 
 // span{
 //     display: block;
