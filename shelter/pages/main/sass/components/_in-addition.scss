@@ -1,18 +1,51 @@
 .in-addition {
     padding: 80px 0 100px 0;
     background-color: $color-background-light;
+    @include media-tablet-small {
+        padding: 42px 0 42px 0;
+    }
 }
 .in-addition__wrapper {
-    padding: 0 182px;
+    // padding: 0 182px;
     display: flex;
+    justify-content: center;
+    @include media-tablet {
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 }
 .in-addition__img {
     padding: 11px 30px 10px 0;
+    max-width: 535px;
+    width: 100%;
+    @include media-tablet {
+        max-width: 505px;
+        padding: 60px 0 0 0;
+    }
+    @include media-mobile {
+        padding: 42px 0 0 0;
+    }
+    @include media-mobile-small {
+        max-width: 260px;
+    }
 }
 
+.in-addition__content {
+    max-width: 380px;
+    @include media-mobile {
+        max-width: 280px;
+    }
+}
 
 .in-addition__header {
     margin-right: 80px;
+    @include media-tablet-small {
+        margin: 0 auto;
+    }
+    @include media-mobile {
+        max-width: 220px;
+    }
 }
 
 .in-addition__text {
@@ -21,6 +54,11 @@
     @include font($size: 1.5rem, $height: 1.7rem);
     color: $color-dark-main;
     letter-spacing: 1px;
+    @include media-mobile {
+        text-align: center;
+        line-height: 24px;
+        letter-spacing: normal;
+    }
 }
 
 .in-addition__card {
@@ -42,11 +80,21 @@
         @include font($size: 2rem, $height: 2.3rem);
         color: $color-dark-main;
     }
-    
+    @include media-mobile {
+        margin: 0;
+        margin-top: 20px;
+        span {
+            @include font($size: 1.5rem, $height: 1.6rem);
+        }
+    }
+
 }
 
 .in-addition__description {
     margin-top: 20px;
     @include font($size: 1.2rem, $height: 1.8rem, $style: italic);
     color: $color-dark-text;
+    @include media-mobile {
+        text-align: justify;
+    }
 }

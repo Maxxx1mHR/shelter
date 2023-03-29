@@ -21,6 +21,12 @@ h2 {
     @include font($size: 3.5rem, $height: 4.5rem);
     letter-spacing: 2px;
     color: $color-dark-main;
+    @include media-tablet-small {
+        text-align: center;
+    }
+    @include media-mobile {
+        @include font($size: 2.5rem, $height: 3.3rem);
+    }
 }
 
 .container {

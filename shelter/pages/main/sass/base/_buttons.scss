@@ -35,9 +35,34 @@
 }
 
 .prev-button {
-    margin-left: 35px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40px;
+    @include media-laptop {
+        left: 27px;
+    }
+    @include media-tablet-small {
+        top: calc(100% - 70px);
+        left: 65px;
+        transform: translateY(-50%);
+    }
 }
 .next-button {
-    margin-right: 35px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 40px;
+    // left: calc(100% - 90px);
+    @include media-laptop {
+        right: 27px;
+    }
+    @include media-tablet-small {
+        top: calc(100% - 70px);
+        right: 65px;
+        // left: 63%;
+        transform: translateY(-50%);
+    }
+
 }
 
