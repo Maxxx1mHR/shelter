@@ -1,15 +1,15 @@
 'use strict';
 
 
-document.addEventListener('DOMContentLoaded', () => { 
+document.addEventListener('DOMContentLoaded', () => {
 
 
 	const hamburger = document.querySelector('.hamburger');
-	const navigation = document.querySelector('.navigation');
+	const navigation = document.querySelector('.navigation__wrapper');
 	const body = document.querySelector('body');
 
 	hamburger.addEventListener('click', () => {
-		navigation.classList.toggle('navigation_active');
+		navigation.classList.toggle('navigation__wrapper_active');
 		hamburger.classList.toggle('hamburger_active');
 		body.classList.toggle('no-scroll');
 	});
