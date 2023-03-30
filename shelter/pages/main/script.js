@@ -1,3 +1,28 @@
+'use strict';
+
+
+document.addEventListener('DOMContentLoaded', () => { 
+
+
+	const hamburger = document.querySelector('.hamburger');
+	const navigation = document.querySelector('.navigation');
+	const body = document.querySelector('body');
+
+	hamburger.addEventListener('click', () => {
+		navigation.classList.toggle('navigation_active');
+		hamburger.classList.toggle('hamburger_active');
+		body.classList.toggle('no-scroll');
+	});
+
+
+
+});
+
+
+
+
+
+
 console.log(`
 *Страница Main
 Вёрстка страницы Main соответствует макету при ширине экрана 1280px: +14
@@ -15,3 +40,6 @@ console.log(`
 
 Сумма: 100 баллов.
 `);
+
+
+

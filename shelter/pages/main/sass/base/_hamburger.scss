@@ -1,7 +1,10 @@
 .hamburger {
     display: none;
-    position: relative;
-    z-index: 1;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    z-index: 2;
+    transition: transform .7s;
     @include media-tablet-small {
         display: block;
         width: 30px;
