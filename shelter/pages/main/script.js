@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const hamburger = document.querySelector('.hamburger');
 	const navigation = document.querySelector('.navigation__wrapper');
 	const body = document.querySelector('body');
+	const menuOverlay = document.querySelector('.navigation__overlay');
+
 
 	hamburger.addEventListener('click', () => {
 		navigation.classList.toggle('navigation__wrapper_active');
@@ -15,11 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 
-
+	menuOverlay.addEventListener('click', (e) => {
+		if (e.target === menuOverlay) {
+			navigation.classList.remove('navigation__wrapper_active');
+			hamburger.classList.remove('hamburger_active');
+		}
+	});
 });
-
-
-
 
 
 

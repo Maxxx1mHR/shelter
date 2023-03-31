@@ -11,7 +11,8 @@
         @include font ($size: 3.2rem, $height: 5.1rem);
         justify-content: center;
         align-items: center;
-        z-index: 2;
+        background-color: $color-text-button;
+        z-index: 1;
     }
 }
 
@@ -22,7 +23,6 @@
         top: 0;
         right: -100%;
         width: 320px;
-        background-color: $color-text-button;
         height: 100vh;
         opacity: 0;
         visibility: hidden;
@@ -89,7 +89,6 @@
         height: 100%;
         background-color: #000;
         opacity: .7;
-        // z-index: 2;
     }
 }
 

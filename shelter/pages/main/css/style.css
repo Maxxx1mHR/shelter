@@ -521,15 +521,13 @@ h2 {
 
 .hamburger {
   display: none;
-  z-index: 1;
+  z-index: 2;
 }
 @media (max-width: 767.9px) {
   .hamburger {
     display: block;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    position: fixed;
+    top: 50px;
     right: 20px;
     width: 30px;
     height: 30px;
@@ -546,42 +544,31 @@ h2 {
 }
 
 .hamburger-icon {
-  top: 50%;
-  left: 10%;
+  top: 10px;
   width: 30px;
   height: 2px;
   background: #FCFCFC;
   position: absolute;
+  background-color: #F1CDB3;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.hamburger-icon::before, .hamburger-icon::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: #F1CDB3;
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-
-.hamburger-icon:before {
-  top: -9px;
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  background: #FCFCFC;
-  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+.hamburger-icon::before {
+  top: 10px;
 }
-
-.hamburger-icon:after {
-  top: 9px;
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  background: #FCFCFC;
-  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+.hamburger-icon::after {
+  top: -10px;
 }
 
 .header {
@@ -841,7 +828,8 @@ h2 {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    z-index: 2;
+    background-color: #292929;
+    z-index: 1;
   }
 }
 
@@ -853,7 +841,6 @@ h2 {
     top: 0;
     right: -100%;
     width: 320px;
-    background-color: #292929;
     height: 100vh;
     opacity: 0;
     visibility: hidden;

@@ -67,53 +67,66 @@
     display: none;
     @include media-tablet-small {
         display: block;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+        position: fixed;
+        top: 50px;
         right: 20px;
         width: 30px;
         height: 30px;
         cursor: pointer;
         transition: all 0.5s;
         &_active {
-
             transition: all 0.5s;
             transform: rotate(90deg);
          }
     }
-    z-index: 1;
+    z-index: 2;
+
 }
 
 .hamburger-icon {
-    top:50%;
-    left:10%;
+    top: 10px;
     width: 30px;
     height: 2px;
     background: #FCFCFC;
     position: absolute;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    background-color: $color-primary;
     transition: all 0.5s;
-
+    &::before, &::after {
+        content: '';
+        position:absolute;
+        width: 30px;
+        height: 2px;
+        background-color: $color-primary;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.5s;
+    }
+    &::before{
+        top: 10px;
+    }
+    &::after {
+        top: -10px;
+    }
+    
 }
 
-.hamburger-icon:before {
-    top: -9px;
-    content: '';
-    position:absolute;
-    width: 30px;
-    height: 2px;
-    background:#FCFCFC;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.5s;
-  }
+// .hamburger-icon:before {
+//     top: -9px;
+//     content: '';
+//     position:absolute;
+//     width: 30px;
+//     height: 2px;
+//     background:#FCFCFC;
+//     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+//     transition: all 0.5s;
+//   }
 
-  .hamburger-icon:after {
-    top: 9px;
-    content: '';
-    position:absolute;
-    width: 30px;
-    height: 2px;
-    background:#FCFCFC;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.5s;
-  }
+//   .hamburger-icon:after {
+//     top: 9px;
+//     content: '';
+//     position:absolute;
+//     width: 30px;
+//     height: 2px;
+//     background:#FCFCFC;
+//     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+//     transition: all 0.5s;
+//   }
