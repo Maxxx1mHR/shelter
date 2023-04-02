@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header class="header">
         <div class="container">
@@ -16,23 +18,28 @@
                     <a href="../main" class="header__logo-name">Cozy House</a>
                     <div class="header__subtitle">Shelter for pets in Boston</div>
                 </div>
-                <nav class="header__navigation">
-                    <ul class="navigation">
-                        <li class="navigation__item">
-                            <a href="../main" class="navigation__list item-hover">About the shelter</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#" class="navigation__list navigation__item_active navigation__item_disabled item-hover">Our pets</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="../main/#help" class="navigation__list item-hover">Help the shelter</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#contacts" class="navigation__list item-hover">Contacts</a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="hamburger"></div>
+                <div class="navigation__wrapper">
+
+                    <nav>
+                        <ul class="navigation">
+                            <li class="navigation__item">
+                                <a href="../main" class="navigation__list item-hover">About the shelter</a>
+                            </li>
+                            <li class="navigation__item">
+                                <a href="#" class="navigation__list navigation__item_active navigation__item_disabled item-hover">Our pets</a>
+                            </li>
+                            <li class="navigation__item">
+                                <a href="../main/#help" class="navigation__list item-hover">Help the shelter</a>
+                            </li>
+                            <li class="navigation__item">
+                                <a href="#contacts" class="navigation__list item-hover">Contacts</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="navigation__overlay"></div>
+                </div>
+
+                <div class="hamburger"><span class="hamburger-icon"></span></div>
             </div>
         </div>
     </header>
@@ -131,10 +138,12 @@
                     </ul>
                 </div>
                 <!-- <div class="footer__img"> -->
-                    <img src="../../assets/images/footer-puppy.png" alt="puppy" class="footer__img">
+                <img src="../../assets/images/footer-puppy.png" alt="puppy" class="footer__img">
                 <!-- </div> -->
             </div>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
+
 </html>

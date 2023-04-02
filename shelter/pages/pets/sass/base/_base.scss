@@ -42,5 +42,10 @@ h2 {
             width: 100%;
         }
     }
+    @include media-tablet-small {
+        &::before {
+            top: 35px;
+        }
+    }
 }
 
