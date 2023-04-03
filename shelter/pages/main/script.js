@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	//Slider
 
-	const slider = document.querySelectorAll('.slider__item');
+
 	const prevButton = document.querySelector('.prev-button');
 	const nextButton = document.querySelector('.next-button');
 	const sliderWrapper = document.querySelector('.slider__wrapper');
@@ -50,10 +50,44 @@ document.addEventListener('DOMContentLoaded', () => {
 	async function getPets() {
 		const result = await fetch('../../pets.json');
 		const data = await result.json();
+		console.log(data);
 
-		// console.log(data);
 
-		data.forEach(item => {
+		let pets = [...data];
+		let rand = Math.floor(Math.random() * pets.length);
+		console.log('index:',rand,data[rand].name);
+		pets.splice(rand, 1);
+		console.log(pets);
+
+		showPets(data);
+	}
+
+	getPets().then(() => {
+		const slider = document.querySelectorAll('.slider__item');
+		allSlides.style.width = 270 * slider.length + 'px';
+		// console.log('Тут работат:',slider);
+	});
+
+	let offset = 0; 
+
+	nextButton.addEventListener('click', () => {
+		const slider = document.querySelectorAll('.slider__item');
+		console.log(slider);
+		if (offset == 270 * slider.length) {
+			offset = 0;
+		} else {
+			offset += 1080;
+		}
+
+		allSlides.style.transform = `translateX(-${offset}px)`;
+	});
+
+	
+
+
+	//Render pets on html page
+	function showPets(pets) {
+		pets.forEach(item => {
 			const element = document.createElement('div');
 			element.classList.add('slider__item');
 			element.innerHTML = `
@@ -63,12 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			`;
 			document.querySelector('.slider__wrapper-inner').append(element);
 		});
-		const slider = document.querySelectorAll('.slider__item');
-		console.log('Тут работат:',slider);
-		allSlides.style.width = 100 * slider.length + '%';
 	}
-
-	getPets();
 
 
 
