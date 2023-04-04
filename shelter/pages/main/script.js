@@ -42,62 +42,100 @@ document.addEventListener('DOMContentLoaded', () => {
 	const prevButton = document.querySelector('.prev-button');
 	const nextButton = document.querySelector('.next-button');
 	const sliderWrapper = document.querySelector('.slider__wrapper');
-	const allSlides = document.querySelector('.slider__wrapper-inner');
+	const slider = document.querySelector('.slider__wrapper-inner');
 	const width = window.getComputedStyle(sliderWrapper).width;
 
 
-	// Show all pets from json file in index.html
-	async function getPets() {
-		const result = await fetch('../../pets.json');
-		const data = await result.json();
-		console.log(data);
+	// const moveLeft =  () => {
+		// slider.classList.add('transition-left');
+		// prevButton.removeEventListener('click', moveLeft);
+		// nextButton.removeEventListener('click', moveRight);
+	// };
 
+	// const moveRight =  () => {
+		// slider.classList.add('transition-right');
+		// prevButton.removeEventListener('click', moveLeft);
+		// nextButton.removeEventListener('click', moveRight);
+	// };
 
-		let pets = [...data];
-		let rand = Math.floor(Math.random() * pets.length);
-		console.log('index:',rand,data[rand].name);
-		pets.splice(rand, 1);
-		console.log(pets);
-
-		showPets(data);
-	}
-
-	getPets().then(() => {
-		const slider = document.querySelectorAll('.slider__item');
-		allSlides.style.width = 270 * slider.length + 'px';
-		// console.log('Тут работат:',slider);
+	prevButton.addEventListener('click', () => {
+		slider.classList.add('transition-left');
 	});
-
-	let offset = 0; 
-
 	nextButton.addEventListener('click', () => {
-		const slider = document.querySelectorAll('.slider__item');
-		console.log(slider);
-		if (offset == 270 * slider.length) {
-			offset = 0;
-		} else {
-			offset += 1080;
-		}
-
-		allSlides.style.transform = `translateX(-${offset}px)`;
+		slider.classList.add('transition-right');
 	});
+
+
+	slider.addEventListener('animationend', (animationEvent) => {
+		
+		slider.classList.remove('transition-left');
+		slider.classList.remove('transition-right');
+		prevButton.addEventListener('click', () => {
+			slider.classList.add('transition-left');
+		});
+		nextButton.addEventListener('click', () => {
+			slider.classList.add('transition-right');
+		});
+		// prevButton.addEventListener('click', moveLeft);
+		// nextButton.addEventListener('click', moveRight);
+	});
+
+
+
+
+
+	// Show all pets from json file in index.html
+	// async function getPets() {
+	// 	const result = await fetch('../../pets.json');
+	// 	const data = await result.json();
+	// 	console.log(data);
+
+
+	// 	let pets = [...data];
+	// 	let rand = Math.floor(Math.random() * pets.length);
+	// 	console.log('index:',rand,data[rand].name);
+	// 	pets.splice(rand, 1);
+	// 	console.log(pets);
+
+	// 	// showPets(data)
+		
+	// }
+
+	// getPets().then(() => {
+	// 	const slider = document.querySelectorAll('.slider__item');
+	// 	allSlides.style.width = 270 * slider.length + 'px';
+	// });
+
+	// let offset = 0; 
+
+	// nextButton.addEventListener('click', () => {
+	// 	const slider = document.querySelectorAll('.slider__item');
+	// 	console.log(slider);
+	// 	if (offset == 270 * slider.length) {
+	// 		offset = 0;
+	// 	} else {
+	// 		offset += 1080;
+	// 	}
+
+	// 	allSlides.style.transform = `translateX(-${offset}px)`;
+	// });
 
 	
 
 
 	//Render pets on html page
-	function showPets(pets) {
-		pets.forEach(item => {
-			const element = document.createElement('div');
-			element.classList.add('slider__item');
-			element.innerHTML = `
-			<img src="${item.img}" alt="pet_photo" class="slider__img-pet">
-			<div class="slider__name-pet">${item.name}</div>
-			<button class="button button_hover slider__button">Learn more</button>
-			`;
-			document.querySelector('.slider__wrapper-inner').append(element);
-		});
-	}
+	// function showPets(pets) {
+	// 	pets.forEach(item => {
+	// 		const element = document.createElement('div');
+	// 		element.classList.add('slider__item');
+	// 		element.innerHTML = `
+	// 		<img src="${item.img}" alt="pet_photo" class="slider__img-pet">
+	// 		<div class="slider__name-pet">${item.name}</div>
+	// 		<button class="button button_hover slider__button">Learn more</button>
+	// 		`;
+	// 		document.querySelector('.slider__wrapper-inner').append(element);
+	// 	});
+	// }
 
 
 
