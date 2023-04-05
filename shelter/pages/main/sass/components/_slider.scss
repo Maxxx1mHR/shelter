@@ -52,7 +52,7 @@
         width: 270px;
     }
 }
-  
+
 
 .slider__wrapper-inner {
     position: relative;
@@ -88,17 +88,17 @@
     from {left: -990px;}
     to {left: -1980px;}
   }
-  
+
   .transition-right {
     animation-name: move-right;
     animation-duration: 1s;
   }
-  
+
   @keyframes move-left {
     from {left: -990px;}
     to {left: 0px;}
   }
-  
+
   .transition-left {
     animation-name: move-left;
     animation-duration: 1s;

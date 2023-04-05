@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 
+
+
+
 	//Slider
 
 
@@ -47,66 +50,268 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-	let randomArray = [];
+	let randomValues = [];
 
 
 	async function getPets() {
 		const result = await fetch('../../pets.json');
 		const data = await result.json();
-		console.log('Data',data);
+		console.log('Start Data',data);
 
+		//Рандомные счисла в диапозоне от 0 до 8
 		for (let i = 0; i < 3; i++) {
 			let randomNumber = Math.floor(Math.random() * 8);
-			if(!randomArray.includes(randomNumber)) {
-				randomArray[i] = randomNumber;
+			if(!randomValues.includes(randomNumber)) {
+				randomValues[i] = randomNumber;
 			} else {
 				i--;
 			}
 		}
 
-		for(let i = 0; i < randomArray.length; i++) {
-			// console.log(randomArray[i]);
-			// console.log(data[randomArray[i]]);
+
+
+		console.log('first init random value',randomValues);
+		for(let i = 0; i < randomValues.length; i++) {
+			// console.log('456',randomArray[i]);
+			console.log('first init random value',data[randomValues[i]]);
 		}
 
-		return data;
-	}
-
-
-	getPets().then((data)=> {
-		
-		// console.log(data.length)
-		// let randomArray = [];
-		for (let i = 0; i < 3; i++) {
-			let randomNumber = Math.floor(Math.random() * data.length);
-			if(!randomArray.includes(randomNumber)) {
-				randomArray[i] = randomNumber;
-			} else {
-				i--;
-			}
-		}
-		
-
-		console.log('Рандом',randomArray);
-
-		const itemActive = document.createElement('div');
-		itemActive.classList.add('slider__item');
+		// const itemActive = document.createElement('div');
+		// itemActive.classList.add('slider__item');
 		for (let i = 0; i < 3; i++) {
 			let itemActive = document.createElement('div');
 			itemActive.classList.add('slider__item');
 			itemActive.innerHTML = `
 				<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
-				<div class="slider__name-pet">${data[randomArray[i]].name}</div>
+				<div class="slider__name-pet">${data[randomValues[i]].name}</div>
 				<button class="button button_hover slider__button">Learn more</button>
 			`;
 			document.querySelector('#item-active').appendChild(itemActive);
-		} 
+		}
+
+
+		return data;
+
+	}
+
+
+
+	let newRandomValues = [];
+	let newRandomValueForSecondClick = [];
+
+	let active;
+	let tmp = [];
+
+	getPets().then((data) => {
+
+		//Новый массив из 5 элементов, без трех, который были в item-active
+		let newDataWithoutFirstInit = [];
+		for (let i = 0; i < randomValues.length; i++) {
+			newDataWithoutFirstInit.push(data[randomValues[i]]);
+		}
+		let s = new Set(newDataWithoutFirstInit);
+		newDataWithoutFirstInit = data.filter(e => !s.has(e));
+
+		console.log('Random value for left and right from 5',newDataWithoutFirstInit);
+
+
+
+		//Новые рандомные числа в диапозоне от 0 до 5 для левой и правой в начале инициализации
+		for (let i = 0; i < 3; i++) {
+			let randomNumber = Math.floor(Math.random() * 5);
+			if(!newRandomValues.includes(randomNumber)) {
+				newRandomValues[i] = randomNumber;
+			} else {
+				i--;
+			}
+		}
+
+		console.log('New random values',newRandomValues);
+
+		for (let i = 0; i < 3; i++) {
+			let itemLeft = document.createElement('div');
+			itemLeft.classList.add('slider__item');
+			itemLeft.innerHTML = `
+				<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+				<div class="slider__name-pet">${newDataWithoutFirstInit[newRandomValues[i]].name}</div>
+				<button class="button button_hover slider__button">Learn more</button>
+			`;
+			document.querySelector('#item-left').appendChild(itemLeft);
+		}
+
+		for (let i = 0; i < 3; i++) {
+			let itemRight = document.createElement('div');
+			itemRight.classList.add('slider__item');
+			itemRight.innerHTML = `
+				<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+				<div class="slider__name-pet">${newDataWithoutFirstInit[newRandomValues[i]].name}</div>
+				<button class="button button_hover slider__button">Learn more</button>
+			`;
+			document.querySelector('#item-right').appendChild(itemRight);
+		}
+
+
+
+
+
+
+
+
+		// return data;
+		prevButton.addEventListener('click', () => {
+			slider.classList.add('transition-left');
+		});
+
+		nextButton.addEventListener('click', () => {
+			slider.classList.add('transition-right');
+		});
+
+
+
+
+		slider.addEventListener('animationend', (animation) => {
+
+			if(animation.animationName === 'move-left') {
+
+				// let newRandomValueForSecondClick = [];
+
+				//ТУТ
+				for (let i = 0; i < newRandomValues.length; i++) {
+					newRandomValueForSecondClick.push(newDataWithoutFirstInit[newRandomValues[i]]);
+				}
+				// active = newRandomValueForSecondClick;
+				// console.log('Значение слева/спарва ACTIVE',active);
+
+				s = new Set(newRandomValueForSecondClick);
+				newRandomValueForSecondClick = data.filter(e => !s.has(e));
+
+				console.log('Значение слева/спарва',newRandomValueForSecondClick);
+
+
+				// for (let i = 0; i < 3; i++) {
+				// 	let test = Math.floor(Math.random() * 5);
+				// 	if(!tmp.includes(test)) {
+				// 		tmp[i] = test;
+				// 	} else {
+				// 		i--;
+				// 	}
+				// }
+
+				console.log('kgld',tmp);
+
+				slider.classList.remove('transition-left');
+				let leftItem = document.querySelector('#item-left').innerHTML;
+				let activeItem = document.querySelector('#item-active').innerHTML;
+
+				document.querySelector('#item-active').innerHTML = leftItem;
+				document.querySelector('#item-right').innerHTML = activeItem;
+
+
+				for (let i = 0; i < 3; i++) {
+					let randomNumber = Math.floor(Math.random() * 5);
+					if(!newRandomValues.includes(randomNumber)) {
+						newRandomValues[i] = randomNumber;
+					} else {
+						i--;
+					}
+				}
+
+
+				document.querySelector('#item-left').innerHTML = '';
+				for (let i = 0; i < 3; i++) {
+
+					let itemLeft = document.createElement('div');
+					itemLeft.classList.add('slider__item');
+					itemLeft.innerHTML = `
+						<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+						<div class="slider__name-pet">${newRandomValueForSecondClick[newRandomValues[i]].name}</div>
+						<button class="button button_hover slider__button">Learn more</button>
+					`;
+					document.querySelector('#item-left').appendChild(itemLeft);
+				}
+
+			}
+
+
+			if(animation.animationName === 'move-right') {
+				slider.classList.remove('transition-right');
+
+				let rightItem = document.querySelector('#item-right').innerHTML;
+				let activeItem = document.querySelector('#item-active').innerHTML;
+
+				document.querySelector('#item-active').innerHTML = rightItem;
+				document.querySelector('#item-left').innerHTML = activeItem;
+
+
+
+				for (let i = 0; i < 3; i++) {
+					let randomNumber = Math.floor(Math.random() * 5);
+					if(!newRandomValues.includes(randomNumber)) {
+						newRandomValues[i] = randomNumber;
+					} else {
+						i--;
+					}
+				}
+
+
+				document.querySelector('#item-right').innerHTML = '';
+				for (let i = 0; i < 3; i++) {
+
+					let itemRight = document.createElement('div');
+					itemRight.classList.add('slider__item');
+					itemRight.innerHTML = `
+						<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+						<div class="slider__name-pet">${newRandomValueForSecondClick[newRandomValues[i]].name}</div>
+						<button class="button button_hover slider__button">Learn more</button>
+					`;
+					document.querySelector('#item-right').appendChild(itemRight);
+				}
+
+			}
+
+
+		});
 
 
 	});
 
 
-	
+
+	// getPets().then((data)=> {
+
+	// 	// console.log(data.length)
+	// 	let randomArray = [];
+	// 	for (let i = 0; i < 3; i++) {
+	// 		let randomNumber = Math.floor(Math.random() * data.length);
+	// 		if(!randomArray.includes(randomNumber)) {
+	// 			randomArray[i] = randomNumber;
+	// 		} else {
+	// 			i--;
+	// 		}
+	// 	}
+
+
+	// 	console.log('Рандом',randomArray);
+
+	// 	const itemActive = document.createElement('div');
+	// 	itemActive.classList.add('slider__item');
+	// 	for (let i = 0; i < 3; i++) {
+	// 		let itemActive = document.createElement('div');
+	// 		itemActive.classList.add('slider__item');
+	// 		itemActive.innerHTML = `
+	// 			<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+	// 			<div class="slider__name-pet">${data[randomArray[i]].name}</div>
+	// 			<button class="button button_hover slider__button">Learn more</button>
+	// 		`;
+	// 		document.querySelector('#item-active').appendChild(itemActive);
+	// 	}
+
+
+	// });
+
+
+
+
 
 	// const moveLeft =  () => {
 		// slider.classList.add('transition-left');
@@ -124,136 +329,120 @@ document.addEventListener('DOMContentLoaded', () => {
 	// let countLeftClickBtn = 0;
 	// let countRightClickBtn = 0;
 
-	prevButton.addEventListener('click', () => {
-		slider.classList.add('transition-left');
-	});
 
-	nextButton.addEventListener('click', () => {
-		slider.classList.add('transition-right');
-	});
+
+	// getPets().then((data) => {
 
 
 
-	slider.addEventListener('animationend', (animation) => {
-
-		console.log('Случайные значение',randomArray);
-		for(let i = 0; i < randomArray.length; i++) {
-			console.log('TEST',randomArray[i]);
-		}
-		getPets().then((data) => {
-			for(let i = 0; i < randomArray.length; i++) {
-				console.log('TEST2',randomArray[i]);
-				// data.splice(randomArray[i],1);
-			}
-			// console.log(data);
-			// for (let i = 0; i < 3; i++) {
-			// 	let randomNumber = Math.floor(Math.random() * data.length);
-			// 	if(!randomArray.includes(randomNumber)) {
-			// 		randomArray[i] = randomNumber;
-			// 	} else {
-			// 		i--;
-			// 	}
-			// }
-			
-	
-			// console.log('Новый массив',randomArray);
-		});
-		
-
-		if(animation.animationName === 'move-left') {
-			slider.classList.remove('transition-left');
-			let leftItem = document.querySelector('#item-left').innerHTML;
-			let activeItem = document.querySelector('#item-active').innerHTML;
-
-			document.querySelector('#item-active').innerHTML = leftItem;
-			document.querySelector('#item-right').innerHTML = activeItem;
-
-			///
-			const item1 = document.createElement('div');
-			item1.classList.add('slider__item');
-			item1.innerHTML = `
-				<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
-				<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
-				<button class="button button_hover slider__button">Learn more</button>
-			`;
-
-			const item2 = document.createElement('div');
-			item2.classList.add('slider__item');
-			item2.innerHTML = `
-				<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
-				<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
-				<button class="button button_hover slider__button">Learn more</button>
-			`;
-
-			const item3 = document.createElement('div');
-			item3.classList.add('slider__item');
-			item3.innerHTML = `
-				<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
-				<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
-				<button class="button button_hover slider__button">Learn more</button>
-			`;
-
-			document.querySelector('#item-left').innerHTML = '';
-			document.querySelector('#item-left').appendChild(item1);
-			document.querySelector('#item-left').appendChild(item2);
-			document.querySelector('#item-left').appendChild(item3);
-
-		}
-
-
-		if(animation.animationName === 'move-right') {
-			slider.classList.remove('transition-right');
-
-			let rightItem = document.querySelector('#item-right').innerHTML;
-			let activeItem = document.querySelector('#item-active').innerHTML;
-
-			document.querySelector('#item-active').innerHTML = rightItem;
-			document.querySelector('#item-left').innerHTML = activeItem;
+	//  });
 
 
 
-			///
-			const item1 = document.createElement('div');
-			item1.classList.add('slider__item');
-			item1.innerHTML = `
-				<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
-				<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
-				<button class="button button_hover slider__button">Learn more</button>
-			`;
-
-			const item2 = document.createElement('div');
-			item2.classList.add('slider__item');
-			item2.innerHTML = `
-				<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
-				<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
-				<button class="button button_hover slider__button">Learn more</button>
-			`;
-
-			const item3 = document.createElement('div');
-			item3.classList.add('slider__item');
-			item3.innerHTML = `
-				<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
-				<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
-				<button class="button button_hover slider__button">Learn more</button>
-			`;
-
-			document.querySelector('#item-right').innerHTML = '';
-			document.querySelector('#item-right').appendChild(item1);
-			document.querySelector('#item-right').appendChild(item2);
-			document.querySelector('#item-right').appendChild(item3);
-
-		}
 
 
-		// prevButton.addEventListener('click', () => {
-		// 	slider.classList.add('transition-left');
-		// });
-		// nextButton.addEventListener('click', () => {
-		// 	slider.classList.add('transition-right');
-		// });
-		// prevButton.addEventListener('click', moveLeft);
-		// nextButton.addEventListener('click', moveRight);
-	});
+
+	// slider.addEventListener('animationend', (animation) => {
+
+	// 	console.log('Значение слева/спарва',newRandomValueForSecondClick);
+
+	// 	if(animation.animationName === 'move-left') {
+
+
+	// 		slider.classList.remove('transition-left');
+	// 		let leftItem = document.querySelector('#item-left').innerHTML;
+	// 		let activeItem = document.querySelector('#item-active').innerHTML;
+
+	// 		document.querySelector('#item-active').innerHTML = leftItem;
+	// 		document.querySelector('#item-right').innerHTML = activeItem;
+
+	// 		///
+
+	// 		const item1 = document.createElement('div');
+	// 		item1.classList.add('slider__item');
+	// 		item1.innerHTML = `
+	// 			<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+	// 			<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
+	// 			<button class="button button_hover slider__button">Learn more</button>
+	// 		`;
+
+	// 		const item2 = document.createElement('div');
+	// 		item2.classList.add('slider__item');
+	// 		item2.innerHTML = `
+	// 			<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+	// 			<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
+	// 			<button class="button button_hover slider__button">Learn more</button>
+	// 		`;
+
+	// 		const item3 = document.createElement('div');
+	// 		item3.classList.add('slider__item');
+	// 		item3.innerHTML = `
+	// 			<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+	// 			<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
+	// 			<button class="button button_hover slider__button">Learn more</button>
+	// 		`;
+
+	// 		document.querySelector('#item-left').innerHTML = '';
+	// 		document.querySelector('#item-left').appendChild(item1);
+	// 		document.querySelector('#item-left').appendChild(item2);
+	// 		document.querySelector('#item-left').appendChild(item3);
+
+	// 	}
+
+
+	// 	if(animation.animationName === 'move-right') {
+	// 		slider.classList.remove('transition-right');
+
+	// 		let rightItem = document.querySelector('#item-right').innerHTML;
+	// 		let activeItem = document.querySelector('#item-active').innerHTML;
+
+	// 		document.querySelector('#item-active').innerHTML = rightItem;
+	// 		document.querySelector('#item-left').innerHTML = activeItem;
+
+
+
+	// 		///
+	// 		const item1 = document.createElement('div');
+	// 		item1.classList.add('slider__item');
+	// 		item1.innerHTML = `
+	// 			<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+	// 			<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
+	// 			<button class="button button_hover slider__button">Learn more</button>
+	// 		`;
+
+	// 		const item2 = document.createElement('div');
+	// 		item2.classList.add('slider__item');
+	// 		item2.innerHTML = `
+	// 			<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+	// 			<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
+	// 			<button class="button button_hover slider__button">Learn more</button>
+	// 		`;
+
+	// 		const item3 = document.createElement('div');
+	// 		item3.classList.add('slider__item');
+	// 		item3.innerHTML = `
+	// 			<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+	// 			<div class="slider__name-pet">${Math.floor(Math.random() * 8)}</div>
+	// 			<button class="button button_hover slider__button">Learn more</button>
+	// 		`;
+
+	// 		document.querySelector('#item-right').innerHTML = '';
+	// 		document.querySelector('#item-right').appendChild(item1);
+	// 		document.querySelector('#item-right').appendChild(item2);
+	// 		document.querySelector('#item-right').appendChild(item3);
+
+	// 	}
+
+
+	// 	// prevButton.addEventListener('click', () => {
+	// 	// 	slider.classList.add('transition-left');
+	// 	// });
+	// 	// nextButton.addEventListener('click', () => {
+	// 	// 	slider.classList.add('transition-right');
+	// 	// });
+	// 	// prevButton.addEventListener('click', moveLeft);
+	// 	// nextButton.addEventListener('click', moveRight);
+	// });
 
 
 
