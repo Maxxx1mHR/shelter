@@ -47,13 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+	let randomArray = [];
+
 
 	async function getPets() {
 		const result = await fetch('../../pets.json');
 		const data = await result.json();
 		console.log('Data',data);
-		let randomArray = [];
-		// while (randomArray.length < 7) {
 
 		for (let i = 0; i < 3; i++) {
 			let randomNumber = Math.floor(Math.random() * 8);
@@ -63,11 +63,50 @@ document.addEventListener('DOMContentLoaded', () => {
 				i--;
 			}
 		}
-		// }
-		console.log('ARRA',randomArray);
-	}
-	getPets();
 
+		for(let i = 0; i < randomArray.length; i++) {
+			// console.log(randomArray[i]);
+			// console.log(data[randomArray[i]]);
+		}
+
+		return data;
+	}
+
+
+	getPets().then((data)=> {
+		
+		// console.log(data.length)
+		// let randomArray = [];
+		for (let i = 0; i < 3; i++) {
+			let randomNumber = Math.floor(Math.random() * data.length);
+			if(!randomArray.includes(randomNumber)) {
+				randomArray[i] = randomNumber;
+			} else {
+				i--;
+			}
+		}
+		
+
+		console.log('Рандом',randomArray);
+
+		const itemActive = document.createElement('div');
+		itemActive.classList.add('slider__item');
+		for (let i = 0; i < 3; i++) {
+			let itemActive = document.createElement('div');
+			itemActive.classList.add('slider__item');
+			itemActive.innerHTML = `
+				<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+				<div class="slider__name-pet">${data[randomArray[i]].name}</div>
+				<button class="button button_hover slider__button">Learn more</button>
+			`;
+			document.querySelector('#item-active').appendChild(itemActive);
+		} 
+
+
+	});
+
+
+	
 
 	// const moveLeft =  () => {
 		// slider.classList.add('transition-left');
@@ -94,24 +133,32 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 
-	const random_start = 1; // От какого генерировать
-	const random_end = 5; // До какого генерировать
-
-	const allСycles = 5;
-
-	let array= [];
-
-	for(let i=random_start;i<=random_end;i++){
-		array.push(i);
-	}
-
-	for(let countCycles=1;countCycles<=allСycles;countCycles++){
-		console.log(array.splice(Math.random()*array.length,1)[0]);
-	}
-
-
 
 	slider.addEventListener('animationend', (animation) => {
+
+		console.log('Случайные значение',randomArray);
+		for(let i = 0; i < randomArray.length; i++) {
+			console.log('TEST',randomArray[i]);
+		}
+		getPets().then((data) => {
+			for(let i = 0; i < randomArray.length; i++) {
+				console.log('TEST2',randomArray[i]);
+				// data.splice(randomArray[i],1);
+			}
+			// console.log(data);
+			// for (let i = 0; i < 3; i++) {
+			// 	let randomNumber = Math.floor(Math.random() * data.length);
+			// 	if(!randomArray.includes(randomNumber)) {
+			// 		randomArray[i] = randomNumber;
+			// 	} else {
+			// 		i--;
+			// 	}
+			// }
+			
+	
+			// console.log('Новый массив',randomArray);
+		});
+		
 
 		if(animation.animationName === 'move-left') {
 			slider.classList.remove('transition-left');
