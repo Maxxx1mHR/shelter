@@ -1159,12 +1159,12 @@ h2 {
 }
 @media (max-width: 992px) {
   .slider__wrapper {
-    width: 580px;
+    width: 630px;
   }
 }
-@media (max-width: 576px) {
+@media (max-width: 767.9px) {
   .slider__wrapper {
-    width: 270px;
+    width: 320px;
   }
 }
 
@@ -1178,6 +1178,12 @@ h2 {
 @media (max-width: 992px) {
   .slider__wrapper-inner {
     gap: 40px;
+    left: -580px;
+  }
+}
+@media (max-width: 767.9px) {
+  .slider__wrapper-inner {
+    left: -270px;
   }
 }
 .slider__section {
@@ -1186,7 +1192,11 @@ h2 {
   display: flex;
   gap: 90px;
 }
-
+@media (max-width: 992px) {
+  .slider__section {
+    gap: 40px;
+  }
+}
 @-webkit-keyframes move-right {
   from {
     left: -990px;
@@ -1195,7 +1205,6 @@ h2 {
     left: -1980px;
   }
 }
-
 @keyframes move-right {
   from {
     left: -990px;
@@ -1204,11 +1213,55 @@ h2 {
     left: -1980px;
   }
 }
+@-webkit-keyframes move-right768 {
+  from {
+    left: -580px;
+  }
+  to {
+    left: -1160px;
+  }
+}
+@keyframes move-right768 {
+  from {
+    left: -580px;
+  }
+  to {
+    left: -1160px;
+  }
+}
+@-webkit-keyframes move-right320 {
+  from {
+    left: -270px;
+  }
+  to {
+    left: -540px;
+  }
+}
+@keyframes move-right320 {
+  from {
+    left: -270px;
+  }
+  to {
+    left: -540px;
+  }
+}
 .transition-right {
   -webkit-animation-name: move-right;
           animation-name: move-right;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
+}
+@media (max-width: 992px) {
+  .transition-right {
+    -webkit-animation-name: move-right768;
+            animation-name: move-right768;
+  }
+}
+@media (max-width: 767.9px) {
+  .transition-right {
+    -webkit-animation-name: move-right320;
+            animation-name: move-right320;
+  }
 }
 
 @-webkit-keyframes move-left {
@@ -1228,11 +1281,55 @@ h2 {
     left: 0px;
   }
 }
+@-webkit-keyframes move-left768 {
+  from {
+    left: -580px;
+  }
+  to {
+    left: 0px;
+  }
+}
+@keyframes move-left768 {
+  from {
+    left: -580px;
+  }
+  to {
+    left: 0px;
+  }
+}
+@-webkit-keyframes move-left320 {
+  from {
+    left: -270px;
+  }
+  to {
+    left: 0px;
+  }
+}
+@keyframes move-left320 {
+  from {
+    left: -270px;
+  }
+  to {
+    left: 0px;
+  }
+}
 .transition-left {
   -webkit-animation-name: move-left;
           animation-name: move-left;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
+}
+@media (max-width: 992px) {
+  .transition-left {
+    -webkit-animation-name: move-left768;
+            animation-name: move-left768;
+  }
+}
+@media (max-width: 767.9px) {
+  .transition-left {
+    -webkit-animation-name: move-left320;
+            animation-name: move-left320;
+  }
 }
 
 .slider__item {
