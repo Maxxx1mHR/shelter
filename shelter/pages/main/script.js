@@ -97,10 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	let newRandomValues = [];
-	let newRandomValueForSecondClick = [];
-
-	let active;
-	let tmp = [];
+	
 
 	getPets().then((data) => {
 
@@ -112,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		let s = new Set(newDataWithoutFirstInit);
 		newDataWithoutFirstInit = data.filter(e => !s.has(e));
 
-		console.log('Random value for left and right from 5',newDataWithoutFirstInit);
+		console.log('Новый массив из 5 элементов, без трех, который были в item-active для лево/право старт',newDataWithoutFirstInit);
 
 
 
@@ -151,13 +148,34 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 
+		console.log('_______');
+		console.log('Узнаю сами значение элементов new random values');
+		for (let i = 0; i < newRandomValues.length; i++) {
+			console.log(newDataWithoutFirstInit[newRandomValues[i]]);
+		}
+
+		// let lastRandomValueForSecond = [];
+		// for (let i = 0; i < 3; i++) {
+		// 	let randomNumber = Math.floor(Math.random() * 5);
+		// 	if(!lastRandomValueForSecond.includes(randomNumber)) {
+		// 		lastRandomValueForSecond[i] = randomNumber;
+		// 	} else {
+		// 		i--;
+		// 	}
+		// }
+
+		// console.log(lastRandomValueForSecond);
+
+		// let newDataForSecondClick = [];
+		// for (let i = 0; i < randomValues.length; i++) {
+		// 	newDataForSecondClick.push(data[randomValues[i]]);
+		// }
+		// let t = new Set(newDataWithoutFirstInit);
+		// newDataForSecondClick = data.filter(e => !t.has(e));
+		// console.log(newDataForSecondClick);
 
 
 
-
-
-
-		// return data;
 		prevButton.addEventListener('click', () => {
 			slider.classList.add('transition-left');
 		});
@@ -165,39 +183,37 @@ document.addEventListener('DOMContentLoaded', () => {
 		nextButton.addEventListener('click', () => {
 			slider.classList.add('transition-right');
 		});
-
-
-
-
+ 
+		
 		slider.addEventListener('animationend', (animation) => {
 
 			if(animation.animationName === 'move-left') {
 
-				// let newRandomValueForSecondClick = [];
-
-				//ТУТ
-				for (let i = 0; i < newRandomValues.length; i++) {
-					newRandomValueForSecondClick.push(newDataWithoutFirstInit[newRandomValues[i]]);
+				let lastRandomValueForSecond = [];
+				for (let i = 0; i < 3; i++) {
+					let randomNumber = Math.floor(Math.random() * 5);
+					if(!lastRandomValueForSecond.includes(randomNumber)) {
+						lastRandomValueForSecond[i] = randomNumber;
+					} else {
+						i--;
+					}
 				}
-				// active = newRandomValueForSecondClick;
-				// console.log('Значение слева/спарва ACTIVE',active);
+		
+				console.log('генерация новых элементов',lastRandomValueForSecond);
+				// Переменная которая будет хранить предыдущий результат.
+		
+				let newDataForSecondClick = [];
+				for (let i = 0; i < randomValues.length; i++) {
+					newDataForSecondClick.push(data[lastRandomValueForSecond[i]]);
+				}	
+				
+				
+				console.log('Last',newDataForSecondClick);
+				let t = new Set(newDataForSecondClick);
+				newDataForSecondClick = data.filter(e => !t.has(e));
 
-				s = new Set(newRandomValueForSecondClick);
-				newRandomValueForSecondClick = data.filter(e => !s.has(e));
+				console.log('Last',newDataForSecondClick);
 
-				console.log('Значение слева/спарва',newRandomValueForSecondClick);
-
-
-				// for (let i = 0; i < 3; i++) {
-				// 	let test = Math.floor(Math.random() * 5);
-				// 	if(!tmp.includes(test)) {
-				// 		tmp[i] = test;
-				// 	} else {
-				// 		i--;
-				// 	}
-				// }
-
-				console.log('kgld',tmp);
 
 				slider.classList.remove('transition-left');
 				let leftItem = document.querySelector('#item-left').innerHTML;
@@ -207,16 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				document.querySelector('#item-right').innerHTML = activeItem;
 
 
-				for (let i = 0; i < 3; i++) {
-					let randomNumber = Math.floor(Math.random() * 5);
-					if(!newRandomValues.includes(randomNumber)) {
-						newRandomValues[i] = randomNumber;
-					} else {
-						i--;
-					}
-				}
-
-
 				document.querySelector('#item-left').innerHTML = '';
 				for (let i = 0; i < 3; i++) {
 
@@ -224,16 +230,42 @@ document.addEventListener('DOMContentLoaded', () => {
 					itemLeft.classList.add('slider__item');
 					itemLeft.innerHTML = `
 						<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
-						<div class="slider__name-pet">${newRandomValueForSecondClick[newRandomValues[i]].name}</div>
+						<div class="slider__name-pet">${newDataForSecondClick[lastRandomValueForSecond[i]].name}</div>
 						<button class="button button_hover slider__button">Learn more</button>
 					`;
 					document.querySelector('#item-left').appendChild(itemLeft);
 				}
-
 			}
 
-
 			if(animation.animationName === 'move-right') {
+
+
+				let lastRandomValueForSecond = [];
+				for (let i = 0; i < 3; i++) {
+					let randomNumber = Math.floor(Math.random() * 5);
+					if(!lastRandomValueForSecond.includes(randomNumber)) {
+						lastRandomValueForSecond[i] = randomNumber;
+					} else {
+						i--;
+					}
+				}
+		
+				console.log('генерация новых элементов',lastRandomValueForSecond);
+				// Переменная которая будет хранить предыдущий результат.
+		
+				let newDataForSecondClick = [];
+				for (let i = 0; i < randomValues.length; i++) {
+					newDataForSecondClick.push(data[lastRandomValueForSecond[i]]);
+				}	
+				
+				
+				console.log('Last',newDataForSecondClick);
+				let t = new Set(newDataForSecondClick);
+				newDataForSecondClick = data.filter(e => !t.has(e));
+
+				console.log('Last',newDataForSecondClick);
+
+
 				slider.classList.remove('transition-right');
 
 				let rightItem = document.querySelector('#item-right').innerHTML;
@@ -244,16 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-				for (let i = 0; i < 3; i++) {
-					let randomNumber = Math.floor(Math.random() * 5);
-					if(!newRandomValues.includes(randomNumber)) {
-						newRandomValues[i] = randomNumber;
-					} else {
-						i--;
-					}
-				}
-
-
 				document.querySelector('#item-right').innerHTML = '';
 				for (let i = 0; i < 3; i++) {
 
@@ -261,90 +283,32 @@ document.addEventListener('DOMContentLoaded', () => {
 					itemRight.classList.add('slider__item');
 					itemRight.innerHTML = `
 						<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
-						<div class="slider__name-pet">${newRandomValueForSecondClick[newRandomValues[i]].name}</div>
+						<div class="slider__name-pet">${newDataForSecondClick[lastRandomValueForSecond[i]].name}</div>
 						<button class="button button_hover slider__button">Learn more</button>
 					`;
 					document.querySelector('#item-right').appendChild(itemRight);
 				}
-
 			}
+
+
 
 
 		});
 
 
-	});
 
 
-
-	// getPets().then((data)=> {
-
-	// 	// console.log(data.length)
-	// 	let randomArray = [];
-	// 	for (let i = 0; i < 3; i++) {
-	// 		let randomNumber = Math.floor(Math.random() * data.length);
-	// 		if(!randomArray.includes(randomNumber)) {
-	// 			randomArray[i] = randomNumber;
-	// 		} else {
-	// 			i--;
-	// 		}
-	// 	}
-
-
-	// 	console.log('Рандом',randomArray);
-
-	// 	const itemActive = document.createElement('div');
-	// 	itemActive.classList.add('slider__item');
-	// 	for (let i = 0; i < 3; i++) {
-	// 		let itemActive = document.createElement('div');
-	// 		itemActive.classList.add('slider__item');
-	// 		itemActive.innerHTML = `
-	// 			<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
-	// 			<div class="slider__name-pet">${data[randomArray[i]].name}</div>
-	// 			<button class="button button_hover slider__button">Learn more</button>
-	// 		`;
-	// 		document.querySelector('#item-active').appendChild(itemActive);
-	// 	}
-
-
+	// prevButton.addEventListener('click', () => {
+	// 	slider.classList.add('transition-left');
 	// });
 
-
-
-
-
-	// const moveLeft =  () => {
-		// slider.classList.add('transition-left');
-		// prevButton.removeEventListener('click', moveLeft);
-		// nextButton.removeEventListener('click', moveRight);
-	// };
-
-	// const moveRight =  () => {
-		// slider.classList.add('transition-right');
-		// prevButton.removeEventListener('click', moveLeft);
-		// nextButton.removeEventListener('click', moveRight);
-	// };
-
-
-	// let countLeftClickBtn = 0;
-	// let countRightClickBtn = 0;
-
-
-
-	// getPets().then((data) => {
-
-
-
-	//  });
-
-
-
-
+	// nextButton.addEventListener('click', () => {
+	// 	slider.classList.add('transition-right');
+	// });
 
 
 	// slider.addEventListener('animationend', (animation) => {
 
-	// 	console.log('Значение слева/спарва',newRandomValueForSecondClick);
 
 	// 	if(animation.animationName === 'move-left') {
 
@@ -527,4 +491,4 @@ document.addEventListener('DOMContentLoaded', () => {
 // `);
 
 
-
+});
