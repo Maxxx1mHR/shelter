@@ -128,6 +128,15 @@ document.addEventListener('DOMContentLoaded', () => {
 					<div class="our-friends__name-pet">${item.name}</div>
 					<button class="button button_hover our-friends__button">Learn more</button>
 				`;
+
+				//Popap
+				itemPet.addEventListener('click', () => {
+					console.log(item.id);
+					document.querySelector('.modal__dialog').innerHTML = '';
+					openModal(item.id);
+				});
+				//Popap
+
 				itemWrapper.appendChild(itemPet);
 			});
 			return paginatedDate;
@@ -367,6 +376,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	main();
+
+	//Popap
+	const modal = document.querySelector('.modal');
+
+	modal.addEventListener('click', (e) => {
+		if (e.target === modal) {
+			modal.classList.remove('modal__active');
+			body.classList.remove('no-scroll');
+		}
+	});
+
+	async function openModal(id) {
+		const data = await getPets();
+		console.log(data[id - 1]);
+
+		body.classList.add('no-scroll');
+
+		modal.classList.add('modal__active');
+		let modalWrapper = document.createElement('div');
+		modalWrapper.classList.add('modal__wrapper');
+		modalWrapper.innerHTML = `
+			<img src="${data[id - 1].img}" alt="img_pet" class="modal__img">
+			<div class="modal__content">
+				<h2 class="modal__title">${data[id - 1].name}</h2>
+				<div class="modal__subtitle">${data[id - 1].type} - ${data[id - 1].breed}</div>
+				<div class="modal__description">${data[id - 1].description}</div>
+				<ul class="pets__list">
+					<li class="pets__item">
+						<span>Age:</span> ${data[id - 1].age}
+					</li>
+					<li class="pets__item">
+						<span>Inoculation:</span> ${data[id - 1].inoculations}
+					</li>
+					<li class="pets__item">
+						<span>Diseases:</span> ${data[id - 1].diseases}
+					</li>
+					<li class="pets__item">
+						<span>Parasites:</span> ${data[id - 1].parasites}
+					</li>
+				</ul>
+			</div>
+			<button class="modal__close"><img src="../../assets/close.svg" alt="close"></button>
+		`;
+		document.querySelector('.modal__dialog').appendChild(modalWrapper);
+
+		document.querySelector('.modal__close').addEventListener('click', () => {
+			modal.classList.remove('modal__active');
+			body.classList.remove('no-scroll');
+		});
+	}
+
+
+
 
 
 });

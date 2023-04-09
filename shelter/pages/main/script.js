@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	//Slider
 
-
 	const prevButton = document.querySelector('.prev-button');
 	const nextButton = document.querySelector('.next-button');
 	const sliderWrapper = document.querySelector('.slider__wrapper');
@@ -105,6 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	async function main () {
 
+
+
 		const data = await getPets();
 		function generateStartItemActiveSlider() {
 			for (let i = 0; i < countOfSlides; i++) {
@@ -116,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			}
 
+
 			console.log('first init random value',randomValues);
 			for(let i = 0; i < randomValues.length; i++) {
 				// console.log('456',randomArray[i]);
@@ -126,13 +128,23 @@ document.addEventListener('DOMContentLoaded', () => {
 				let itemActive = document.createElement('div');
 				itemActive.classList.add('slider__item');
 				itemActive.innerHTML = `
-					<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+					<img src="${data[randomValues[i]].img}" alt="pet_photo" class="slider__img-pet">
 					<div class="slider__name-pet">${data[randomValues[i]].name}</div>
 					<button class="button button_hover slider__button">Learn more</button>
 				`;
+
+				//Popap
+				itemActive.addEventListener('click', () => {
+					console.log(data[randomValues[i]].id);
+					document.querySelector('.modal__dialog').innerHTML = '';
+					openModal(data[randomValues[i]].id);
+				});
+				//Popap
+
 				document.querySelector('#item-active').appendChild(itemActive);
 			}
 		}
+
 		let newRandomValues = [];
 		function generateStartLeftRightSlider() {
 			let newDataWithoutFirstInit = [];
@@ -162,10 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				let itemLeft = document.createElement('div');
 				itemLeft.classList.add('slider__item');
 				itemLeft.innerHTML = `
-					<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+					<img src="${newDataWithoutFirstInit[newRandomValues[i]].img}" alt="pet_photo" class="slider__img-pet">
 					<div class="slider__name-pet">${newDataWithoutFirstInit[newRandomValues[i]].name}</div>
 					<button class="button button_hover slider__button">Learn more</button>
 				`;
+
+
 				document.querySelector('#item-left').appendChild(itemLeft);
 			}
 
@@ -173,10 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				let itemRight = document.createElement('div');
 				itemRight.classList.add('slider__item');
 				itemRight.innerHTML = `
-					<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+					<img src="${newDataWithoutFirstInit[newRandomValues[i]].img}" alt="pet_photo" class="slider__img-pet">
 					<div class="slider__name-pet">${newDataWithoutFirstInit[newRandomValues[i]].name}</div>
 					<button class="button button_hover slider__button">Learn more</button>
 				`;
+
+
 				document.querySelector('#item-right').appendChild(itemRight);
 			}
 
@@ -190,13 +206,17 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log(randomValueInLeftRight);
 
 		}
+
 		function generateItemClickSlider() {
+
 			prevButton.addEventListener('click', () => {
 				slider.classList.add('transition-left');
 			});
 
 			nextButton.addEventListener('click', () => {
 				slider.classList.add('transition-right');
+
+
 			});
 
 
@@ -235,17 +255,21 @@ document.addEventListener('DOMContentLoaded', () => {
 					document.querySelector('#item-active').innerHTML = leftItem;
 					document.querySelector('#item-right').innerHTML = activeItem;
 
-
 					document.querySelector('#item-left').innerHTML = '';
+
+
+
+
 					for (let i = 0; i < countOfSlides; i++) {
 
 						let itemLeft = document.createElement('div');
 						itemLeft.classList.add('slider__item');
 						itemLeft.innerHTML = `
-							<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+							<img src="${newDataForSecondClick[lastRandomValueForSecond[i]].img}" alt="pet_photo" class="slider__img-pet">
 							<div class="slider__name-pet">${newDataForSecondClick[lastRandomValueForSecond[i]].name}</div>
 							<button class="button button_hover slider__button">Learn more</button>
 						`;
+
 						document.querySelector('#item-left').appendChild(itemLeft);
 					}
 				}
@@ -295,15 +319,18 @@ document.addEventListener('DOMContentLoaded', () => {
 						let itemRight = document.createElement('div');
 						itemRight.classList.add('slider__item');
 						itemRight.innerHTML = `
-							<img src="../../assets/images/our_friends/pets-katrine.png" alt="pet_photo" class="slider__img-pet">
+							<img src="${newDataForSecondClick[lastRandomValueForSecond[i]].img}" alt="pet_photo" class="slider__img-pet">
 							<div class="slider__name-pet">${newDataForSecondClick[lastRandomValueForSecond[i]].name}</div>
 							<button class="button button_hover slider__button">Learn more</button>
 						`;
+
+
 						document.querySelector('#item-right').appendChild(itemRight);
 					}
 				}
 			});
 		}
+
 
 
 		generateStartItemActiveSlider();
@@ -313,6 +340,60 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	main();
+
+
+
+	//Popap
+
+	const modal = document.querySelector('.modal');
+
+	modal.addEventListener('click', (e) => {
+		if (e.target === modal) {
+			modal.classList.remove('modal__active');
+			body.classList.remove('no-scroll');
+		}
+	});
+
+	async function openModal(id) {
+		const data = await getPets();
+		console.log(data[id - 1]);
+
+		body.classList.add('no-scroll');
+
+		modal.classList.add('modal__active');
+		let modalWrapper = document.createElement('div');
+		modalWrapper.classList.add('modal__wrapper');
+		modalWrapper.innerHTML = `
+			<img src="${data[id - 1].img}" alt="img_pet" class="modal__img">
+			<div class="modal__content">
+				<h2 class="modal__title">${data[id - 1].name}</h2>
+				<div class="modal__subtitle">${data[id - 1].type} - ${data[id - 1].breed}</div>
+				<div class="modal__description">${data[id - 1].description}</div>
+				<ul class="pets__list">
+					<li class="pets__item">
+						<span>Age:</span> ${data[id - 1].age}
+					</li>
+					<li class="pets__item">
+						<span>Inoculation:</span> ${data[id - 1].inoculations}
+					</li>
+					<li class="pets__item">
+						<span>Diseases:</span> ${data[id - 1].diseases}
+					</li>
+					<li class="pets__item">
+						<span>Parasites:</span> ${data[id - 1].parasites}
+					</li>
+				</ul>
+			</div>
+			<button class="modal__close"><img src="../../assets/close.svg" alt="close"></button>
+		`;
+		document.querySelector('.modal__dialog').appendChild(modalWrapper);
+
+		document.querySelector('.modal__close').addEventListener('click', () => {
+			modal.classList.remove('modal__active');
+			body.classList.remove('no-scroll');
+		});
+	}
+
 
 
 
