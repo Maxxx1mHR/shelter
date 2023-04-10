@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 	}
 		// }
 
-		if (window.screen.availWidth >= 992) {
+		if (window.screen.availWidth >= 993) {
 
 			countItemsPerPage = 8;
 			// currentPage = countAllPets / countItemsPerPage;
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		window.addEventListener('resize', () => {
 			console.log(window.screen.availWidth);
-			if (window.screen.availWidth >= 992) {
+			if (window.screen.availWidth >= 993) {
 
 				countItemsPerPage = 8;
 				// currentPage = countAllPets / countItemsPerPage;

@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	async function main () {
 
-		
+
 
 		let pastArr = [];
 		let currArr = [];
@@ -401,62 +401,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		const petsData =  await getPets();
 		// let countShowSlides = 3;
-
-
-
-
-		if (window.screen.availWidth >= 992) {
+		if (window.screen.availWidth >= 993) {
 			console.log(window.screen.availWidth);
 			countShowSlides = 3;
-			curr();
-			past();
-			next();
 		}
-	
+
 		if (window.screen.availWidth <= 992 && window.screen.availWidth >= 768) {
 			countShowSlides = 2;
-			curr();
-			past();
-			next();
 		}
 		if (window.screen.availWidth <= 767) {
 			countShowSlides = 1;
-			curr();
-			past();
-			next();
 		}
 		console.log(countShowSlides);
-	
-		window.addEventListener('resize', () => {
-			console.log(window.screen.availWidth);
-			if (window.screen.availWidth >= 992) {
-	
-				countShowSlides = 3;
-				curr();
-				past();
-				next();
-		
-			}
-	
-			if (window.screen.availWidth <= 992 && window.screen.availWidth >= 768) {
-	
-				countShowSlides = 2;
-				curr();
-				past();
-				next();
-			
-	
-			}
-			if (window.screen.availWidth <= 767) {
-	
-				countShowSlides = 1;
-				curr();
-				past();
-				next();
-				
-	
-			}
-		});
+
 
 
 
@@ -509,10 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log('Init curr',currArr);
 			console.log('Init next',nextArr);
 		}
-		init();
-		// console.log('past',pastArr);
-		// console.log('curr',currArr);
-		// console.log('next',nextArr);
+		// init();
 
 		//Прокрутка вправо. Клик право. Лента едет влево
 		function forward() {
@@ -535,11 +489,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log('forward curr',currArr);
 			console.log('forward next',nextArr);
 		}
-		// forward();
-		// console.log('Forward_____');
-		// console.log('past',pastArr);
-		// console.log('curr',currArr);
-		// console.log('next',nextArr);
 
 		//Смена направления назад.Т.е. клик влево, клик вправо. прокрутка влево
 		function changeToBackward() {
@@ -559,12 +508,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			}
 		}
-
-		// changeToBackward();
-		// console.log('changeToBackward_____');
-		// console.log('past',pastArr);
-		// console.log('curr',currArr);
-		// console.log('next',nextArr);
 
 
 		//Прокрутка влево. Клик влево. Лента едет вправо
@@ -588,11 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log('backward next',nextArr);
 		}
 
-		// backward();
-		// console.log('backward_____');
-		// console.log('past',pastArr);
-		// console.log('curr',currArr);
-		// console.log('next',nextArr);
+
 
 		function changeToForward() {
 			console.log('changeToForward');
@@ -613,12 +552,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		}
 
-		// changeToForward();
-		// console.log('changeToForward_____');
-		// console.log('past',pastArr);
-		// console.log('curr',currArr);
-		// console.log('next',nextArr);
-
 
 		function curr() {
 			currArr.forEach(item => {
@@ -636,7 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					document.querySelector('.modal__dialog').innerHTML = '';
 					openModal(item + 1);
 				});
-				
+
 				document.querySelector('#item-active').appendChild(newItem);
 				console.log('curr', petsData[item]);
 			});
@@ -653,12 +586,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			`;
 
 				//Popap
-				// newItem.addEventListener('click', () => {
-				// 	console.log(item.id);
-				// 	document.querySelector('.modal__dialog').innerHTML = '';
-				// 	openModal(item.id);
-				// });
-
+				newItem.addEventListener('click', () => {
+					console.log(item);
+					document.querySelector('.modal__dialog').innerHTML = '';
+					openModal(item + 1);
+				});
 
 
 				document.querySelector('#item-left').appendChild(newItem);
@@ -675,42 +607,39 @@ document.addEventListener('DOMContentLoaded', () => {
 				<div class="slider__name-pet">${petsData[item].name}</div>
 				<button class="button button_hover slider__button">Learn more</button>
 			`;
-
 				//Popap
-				// newItem.addEventListener('click', () => {
-				// 	console.log(item.id);
-				// 	document.querySelector('.modal__dialog').innerHTML = '';
-				// 	openModal(item.id);
-				// });
-
+				newItem.addEventListener('click', () => {
+					console.log(item);
+					document.querySelector('.modal__dialog').innerHTML = '';
+					openModal(item + 1);
+				});
 
 				document.querySelector('#item-right').appendChild(newItem);
 				console.log('next', petsData[item]);
 			});
-				
+
 		}
+
+		// init();
 		// curr();
 		// past();
 		// next();
-
-
-		// curr();
-		// past();
-		// next();
-
-
 
 
 
 
 		prevButton.addEventListener('click', () => {
 			slider.classList.add('transition-left');
+
 			backward();
+
 		});
 
 		nextButton.addEventListener('click', () => {
 			slider.classList.add('transition-right');
+
 			forward();
+
 		});
 
 
@@ -720,21 +649,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			if(animation.animationName === 'move-left' || animation.animationName === 'move-left768' || animation.animationName === 'move-left320') {
 
+
+
 				slider.classList.remove('transition-left');
 
 				activeItem.innerHTML = '';
 				leftItem.innerHTML = '';
 				rightItem.innerHTML = '';
 
-
 				curr();
 				past();
 				next();
 
-				
+
 			}
 
 			if(animation.animationName === 'move-right' || animation.animationName === 'move-right768' || animation.animationName === 'move-right320') {
+
+
 
 				slider.classList.remove('transition-right');
 
@@ -742,19 +674,106 @@ document.addEventListener('DOMContentLoaded', () => {
 				leftItem.innerHTML = '';
 				rightItem.innerHTML = '';
 
-
 				curr();
 				past();
 				next();
-		
 
 			}
 
+		});
 
+		window.addEventListener('resize', () => {
+			console.log(window.screen.availWidth);
+			if (window.screen.availWidth >= 993) {
+
+				countShowSlides = 3;
+
+				activeItem.innerHTML = '';
+				leftItem.innerHTML = '';
+				rightItem.innerHTML = '';
+
+				// curr();
+				// past();
+				// next();
+			}
+
+			if (window.screen.availWidth <= 992 && window.screen.availWidth >= 768) {
+
+
+				countShowSlides = 2;
+
+				activeItem.innerHTML = '';
+				leftItem.innerHTML = '';
+				rightItem.innerHTML = '';
+
+				// curr();
+				// past();
+				// next();
+			}
+			if (window.screen.availWidth <= 767) {
+
+				countShowSlides = 1;
+
+				activeItem.innerHTML = '';
+				leftItem.innerHTML = '';
+				rightItem.innerHTML = '';
+
+				// curr();
+				// past();
+				// next();
+
+			}
 		});
 
 
+		// window.addEventListener('resize', () => {
+		// 	console.log(window.screen.availWidth);
+		// 	if (window.screen.availWidth >= 993) {
 
+		// 		countShowSlides = 3;
+
+		// 		activeItem.innerHTML = '';
+		// 		leftItem.innerHTML = '';
+		// 		rightItem.innerHTML = '';
+
+		// 		curr();
+		// 		past();
+		// 		next();
+		// 	}
+
+		// 	if (window.screen.availWidth <= 992 && window.screen.availWidth >= 768) {
+
+
+		// 		countShowSlides = 2;
+
+		// 		activeItem.innerHTML = '';
+		// 		leftItem.innerHTML = '';
+		// 		rightItem.innerHTML = '';
+
+		// 		curr();
+		// 		past();
+		// 		next();
+		// 	}
+		// 	if (window.screen.availWidth <= 767) {
+
+		// 		countShowSlides = 1;
+
+		// 		activeItem.innerHTML = '';
+		// 		leftItem.innerHTML = '';
+		// 		rightItem.innerHTML = '';
+
+		// 		curr();
+		// 		past();
+		// 		next();
+
+		// 	}
+		// });
+
+
+		init();
+		curr();
+		past();
+		next();
 
 
 	}
@@ -762,7 +781,23 @@ document.addEventListener('DOMContentLoaded', () => {
 	main();
 
 
-	
+	window.addEventListener('resize', () => {
+		console.log(window.screen.availWidth);
+		if (window.screen.availWidth >= 993) {
+			// countShowSlides = 3;
+			main();
+		}
+		if (window.screen.availWidth <= 992 && window.screen.availWidth >= 768) {
+			// countShowSlides = 2;
+			main();
+		}
+		if (window.screen.availWidth <= 767) {
+			// countShowSlides = 1;
+			main();
+		}
+	});
+
+
 	// // Popap
 	const modal = document.querySelector('.modal');
 
