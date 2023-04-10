@@ -3,6 +3,7 @@
 }
 
 .header__wrapper {
+    position: relative;
     padding: 0 40px;
     display: flex;
     justify-content: space-between;
@@ -37,6 +38,7 @@
 
 .header__navigation {
     @include media-tablet-small {
-        display: none;
+        // display: none;
+
     }
 }
