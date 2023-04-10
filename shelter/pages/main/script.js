@@ -1,5 +1,13 @@
 'use strict';
 
+console.log(`
+1. Реализация burger menu на обеих страницах +26;
+2. Реализация слайдера-карусели на странице 'Main' +36 (Возможно меньше, баллов 30-32, есть сомнения в одном месте);
+3. Реализация пагинации на странице 'Pets' +36;
+4. Реализация попап на обеих страницах +12.
+Итог: 106/110.
+
+`);
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -52,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// let countOfSlides;
 
-	// console.log(window.screen.availWidth);
+	// //console.log(window.screen.availWidth);
 	// if (window.screen.availWidth >= 993) {
 	// 	countOfSlides = 3;
 
@@ -70,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// async function getPets() {
 	// 	const result = await fetch('../../pets.json');
 	// 	const data = await result.json();
-	// 	console.log('Start Data',data);
+	// 	//console.log('Start Data',data);
 
 	// 	return data;
 	// }
@@ -92,10 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 		}
 
 
-	// 		console.log('first init random value',randomValues);
+	// 		//console.log('first init random value',randomValues);
 	// 		for(let i = 0; i < randomValues.length; i++) {
 
-	// 			console.log('first init random value',data[randomValues[i]]);
+	// 			//console.log('first init random value',data[randomValues[i]]);
 	// 		}
 
 	// 		for (let i = 0; i < countOfSlides; i++) {
@@ -110,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// 			//Popap
 	// 			itemActive.addEventListener('click', () => {
-	// 				console.log(data[randomValues[i]].id);
+	// 				//console.log(data[randomValues[i]].id);
 	// 				document.querySelector('.modal__dialog').innerHTML = '';
 	// 				openModal(data[randomValues[i]].id);
 	// 			});
@@ -129,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 		let s = new Set(newDataWithoutFirstInit);
 	// 		newDataWithoutFirstInit = data.filter(e => !s.has(e));
 
-	// 		console.log('Новый массив из 5 элементов, без трех, который были в item-active для лево/право старт',newDataWithoutFirstInit);
+	// 		//console.log('Новый массив из 5 элементов, без трех, который были в item-active для лево/право старт',newDataWithoutFirstInit);
 
 
 
@@ -143,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 			}
 	// 		}
 
-	// 		console.log('New random values',newRandomValues);
+	// 		//console.log('New random values',newRandomValues);
 
 	// 		for (let i = 0; i < countOfSlides; i++) {
 	// 			let itemLeft = document.createElement('div');
@@ -172,13 +180,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 		}
 
 
-	// 		console.log('_______');
-	// 		console.log('Узнаю сами значение элементов new random values');
+	// 		//console.log('_______');
+	// 		//console.log('Узнаю сами значение элементов new random values');
 	// 		let randomValueInLeftRight = [];
 	// 		for (let i = 0; i < newRandomValues.length; i++) {
 	// 			randomValueInLeftRight[i] = newDataWithoutFirstInit[newRandomValues[i]];
 	// 		}
-	// 		console.log(randomValueInLeftRight);
+	// 		//console.log(randomValueInLeftRight);
 
 	// 	}
 
@@ -207,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 				}
 	// 			}
 
-	// 			console.log('генерация новых элементов',lastRandomValueForSecond);
+	// 			//console.log('генерация новых элементов',lastRandomValueForSecond);
 
 
 	// 			let newDataForSecondClick = [];
@@ -216,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 			let val = new Set(newDataForSecondClick);
 	// 			newDataForSecondClick = data.filter(e => !val.has(e));
 
-	// 			console.log('Last',newDataForSecondClick);
+	// 			//console.log('Last',newDataForSecondClick);
 
 	// 			if(animation.animationName === 'move-left' || animation.animationName === 'move-left768' || animation.animationName === 'move-left320') {
 
@@ -262,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 					}
 	// 				}
 
-	// 				console.log('генерация новых элементов',lastRandomValueForSecond);
+	// 				//console.log('генерация новых элементов',lastRandomValueForSecond);
 
 
 	// 				let newDataForSecondClick = [];
@@ -271,11 +279,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 				}
 
 
-	// 				console.log('Last',newDataForSecondClick);
+	// 				//console.log('Last',newDataForSecondClick);
 	// 				let t = new Set(newDataForSecondClick);
 	// 				newDataForSecondClick = data.filter(e => !t.has(e));
 
-	// 				console.log('Last',newDataForSecondClick);
+	// 				//console.log('Last',newDataForSecondClick);
 
 
 	// 				slider.classList.remove('transition-right');
@@ -330,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// async function openModal(id) {
 	// 	const data = await getPets();
-	// 	console.log(data[id - 1]);
+	// 	//console.log(data[id - 1]);
 
 	// 	body.classList.add('no-scroll');
 
@@ -382,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	async function getPets() {
 		const result = await fetch('../../pets.json');
 		const data = await result.json();
-		console.log('Start Data',data);
+		// //console.log('Start Data',data);
 
 		return data;
 	}
@@ -402,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const petsData =  await getPets();
 		// let countShowSlides = 3;
 		if (window.screen.availWidth >= 993) {
-			console.log(window.screen.availWidth);
+			// //console.log(window.screen.availWidth);
 			countShowSlides = 3;
 		}
 
@@ -412,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (window.screen.availWidth <= 767) {
 			countShowSlides = 1;
 		}
-		console.log(countShowSlides);
+		// //console.log(countShowSlides);
 
 
 
@@ -462,15 +470,15 @@ document.addEventListener('DOMContentLoaded', () => {
 					i--;
 				}
 			}
-			console.log('Init past',pastArr);
-			console.log('Init curr',currArr);
-			console.log('Init next',nextArr);
+			//console.log('Init past',pastArr);
+			//console.log('Init curr',currArr);
+			//console.log('Init next',nextArr);
 		}
 		// init();
 
 		//Прокрутка вправо. Клик право. Лента едет влево
 		function forward() {
-			console.log('forward');
+			//console.log('forward');
 			pastArr = [];
 			pastArr.push(...currArr);
 			currArr = [];
@@ -485,14 +493,14 @@ document.addEventListener('DOMContentLoaded', () => {
 					i--;
 				}
 			}
-			console.log('forward past',pastArr);
-			console.log('forward curr',currArr);
-			console.log('forward next',nextArr);
+			//console.log('forward past',pastArr);
+			//console.log('forward curr',currArr);
+			//console.log('forward next',nextArr);
 		}
 
 		//Смена направления назад.Т.е. клик влево, клик вправо. прокрутка влево
 		function changeToBackward() {
-			console.log('changeToBackward');
+			//console.log('changeToBackward');
 			let tmp = [];
 			tmp.push(...pastArr);
 			pastArr = [];
@@ -512,7 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		//Прокрутка влево. Клик влево. Лента едет вправо
 		function backward() {
-			console.log('backward');
+			//console.log('backward');
 			nextArr = [];
 			nextArr.push(...currArr);
 			currArr = [];
@@ -526,15 +534,15 @@ document.addEventListener('DOMContentLoaded', () => {
 					i--;
 				}
 			}
-			console.log('backward past',pastArr);
-			console.log('backward curr',currArr);
-			console.log('backward next',nextArr);
+			//console.log('backward past',pastArr);
+			//console.log('backward curr',currArr);
+			//console.log('backward next',nextArr);
 		}
 
 
 
 		function changeToForward() {
-			console.log('changeToForward');
+			//console.log('changeToForward');
 			let tmp = [];
 			tmp.push(...nextArr);
 			nextArr = [];
@@ -565,13 +573,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				//Popap
 				newItem.addEventListener('click', () => {
-					console.log(item);
+					//console.log(item);
 					document.querySelector('.modal__dialog').innerHTML = '';
 					openModal(item + 1);
 				});
 
 				document.querySelector('#item-active').appendChild(newItem);
-				console.log('curr', petsData[item]);
+				//console.log('curr', petsData[item]);
 			});
 		}
 
@@ -587,14 +595,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				//Popap
 				newItem.addEventListener('click', () => {
-					console.log(item);
+					//console.log(item);
 					document.querySelector('.modal__dialog').innerHTML = '';
 					openModal(item + 1);
 				});
 
 
 				document.querySelector('#item-left').appendChild(newItem);
-				console.log('past', petsData[item]);
+				//console.log('past', petsData[item]);
 			});
 		}
 
@@ -609,13 +617,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			`;
 				//Popap
 				newItem.addEventListener('click', () => {
-					console.log(item);
+					//console.log(item);
 					document.querySelector('.modal__dialog').innerHTML = '';
 					openModal(item + 1);
 				});
 
 				document.querySelector('#item-right').appendChild(newItem);
-				console.log('next', petsData[item]);
+				//console.log('next', petsData[item]);
 			});
 
 		}
@@ -683,7 +691,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 		window.addEventListener('resize', () => {
-			console.log(window.screen.availWidth);
+			//console.log(window.screen.availWidth);
 			if (window.screen.availWidth >= 993) {
 
 				countShowSlides = 3;
@@ -727,7 +735,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 		// window.addEventListener('resize', () => {
-		// 	console.log(window.screen.availWidth);
+		// 	//console.log(window.screen.availWidth);
 		// 	if (window.screen.availWidth >= 993) {
 
 		// 		countShowSlides = 3;
@@ -782,7 +790,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	window.addEventListener('resize', () => {
-		console.log(window.screen.availWidth);
+		//console.log(window.screen.availWidth);
 		if (window.screen.availWidth >= 993) {
 			// countShowSlides = 3;
 			main();
@@ -810,7 +818,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	async function openModal(id) {
 		const data = await getPets();
-		console.log(data[id - 1]);
+		//console.log(data[id - 1]);
 
 		body.classList.add('no-scroll');
 

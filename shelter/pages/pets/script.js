@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	async function getPets() {
 		const result = await fetch('../../pets.json');
 		const data = await result.json();
-		console.log('Start Data',data);
+		//console.log('Start Data',data);
 		return data;
 	}
 
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			return randomValues;
 		}
 
-		// console.log('Вывод рандомных животных',randomValueArray);
+		// //console.log('Вывод рандомных животных',randomValueArray);
 
 
 		//Генерация массива из 48 объектов
@@ -108,18 +108,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		function showPets(petsData, countItemsPerPage, currentPage) {
 
 			currentPageBtn.innerText = `${currentPage}`;
-			console.log('Текущая страница',currentPage);
-			console.log('Эл',currentPage * countItemsPerPage);
-			// console.log('Count',count);
+			//console.log('Текущая страница',currentPage);
+			//console.log('Эл',currentPage * countItemsPerPage);
+			// //console.log('Count',count);
 			// count = countItemsPerPage * (currentPage + 1);
-			// console.log('123',count);
+			// //console.log('123',count);
 			itemWrapper.innerHTML = '';
 			currentPage--;
 
 			const start = countItemsPerPage * currentPage;
 			const end = start + countItemsPerPage;
 			const paginatedDate = petsData.slice(start, end);
-			// console.log('DATA',paginatedDate);
+			// //console.log('DATA',paginatedDate);
 			paginatedDate.forEach(item => {
 				let itemPet = document.createElement('div');
 				itemPet.classList.add('our-friends__item');
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				//Popap
 				itemPet.addEventListener('click', () => {
-					console.log(item.id);
+					//console.log(item.id);
 					document.querySelector('.modal__dialog').innerHTML = '';
 					openModal(item.id);
 				});
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			return paginatedDate;
 		}
 
-		console.log('petData',petsData);
+		//console.log('petData',petsData);
 
 		// showPets(petsData, countItemsPerPage, currentPage);
 
@@ -152,43 +152,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 			// if (count === countItemsPerPage) {
-			// 	console.log('сейчас элементов count in chech active',count);
+			// 	//console.log('сейчас элементов count in chech active',count);
 			// 	prevPage.classList.add('button_inactive');
 			// 	firstPage.classList.add('button_inactive');
 			// } else {
-			// 	console.log('сейчас элементов count in chech active 22',count);
+			// 	//console.log('сейчас элементов count in chech active 22',count);
 			// 	prevPage.classList.remove('button_inactive');
 			// 	firstPage.classList.remove('button_inactive');
 			// }
 
 			// if (count === countAllPets) {
-			// 	// console.log('count',count);
+			// 	// //console.log('count',count);
 			// 	nextPage.classList.add('button_inactive');
 
 			// 	lastPage.classList.add('button_inactive');
 			// } else {
-			// 	// console.log('count',count);
+			// 	// //console.log('count',count);
 			// 	nextPage.classList.remove('button_inactive');
 
 			// 	lastPage.classList.remove('button_inactive');
 			// }
 			if (currentPage === 1) {
-				// console.log('сейчас элементов count in chech active',count);
+				// //console.log('сейчас элементов count in chech active',count);
 				prevPage.classList.add('button_inactive');
 				firstPage.classList.add('button_inactive');
 			} else {
-				// console.log('сейчас элементов count in chech active 22',count);
+				// //console.log('сейчас элементов count in chech active 22',count);
 				prevPage.classList.remove('button_inactive');
 				firstPage.classList.remove('button_inactive');
 			}
 
 			if (countAllPets === currentPage * countItemsPerPage) {
-				// console.log('count',count);
+				// //console.log('count',count);
 				nextPage.classList.add('button_inactive');
 
 				lastPage.classList.add('button_inactive');
 			} else {
-				// console.log('count',count);
+				// //console.log('count',count);
 				nextPage.classList.remove('button_inactive');
 
 				lastPage.classList.remove('button_inactive');
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		// 	countItemsPerPage = 6;
 		// 	count = countItemsPerPage;
-		// 	console.log(currentPage);
+		// 	//console.log(currentPage);
 		// 	if (currentPage >= 5) {
 		// 		currentPage = 7;
 		// 		showPets(petsData, countItemsPerPage, currentPage);
@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		window.addEventListener('resize', () => {
-			console.log(window.screen.availWidth);
+			//console.log(window.screen.availWidth);
 			if (window.screen.availWidth >= 993) {
 
 				countItemsPerPage = 8;
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	async function openModal(id) {
 		const data = await getPets();
-		console.log(data[id - 1]);
+		//console.log(data[id - 1]);
 
 		body.classList.add('no-scroll');
 
