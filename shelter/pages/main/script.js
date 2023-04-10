@@ -377,6 +377,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const slider = document.querySelector('.slider__wrapper-inner');
 
+
+
 	async function getPets() {
 		const result = await fetch('../../pets.json');
 		const data = await result.json();
@@ -385,15 +387,83 @@ document.addEventListener('DOMContentLoaded', () => {
 		return data;
 	}
 
+	let countShowSlides;
+
+
+
 	async function main () {
+
+		
 
 		let pastArr = [];
 		let currArr = [];
 		let nextArr = [];
 
 		const petsData =  await getPets();
-		let countShowSlides = 3;
+		// let countShowSlides = 3;
 
+
+
+
+		if (window.screen.availWidth >= 992) {
+			console.log(window.screen.availWidth);
+			countShowSlides = 3;
+			curr();
+			past();
+			next();
+		}
+	
+		if (window.screen.availWidth <= 992 && window.screen.availWidth >= 768) {
+			countShowSlides = 2;
+			curr();
+			past();
+			next();
+		}
+		if (window.screen.availWidth <= 767) {
+			countShowSlides = 1;
+			curr();
+			past();
+			next();
+		}
+		console.log(countShowSlides);
+	
+		window.addEventListener('resize', () => {
+			console.log(window.screen.availWidth);
+			if (window.screen.availWidth >= 992) {
+	
+				countShowSlides = 3;
+				curr();
+				past();
+				next();
+		
+			}
+	
+			if (window.screen.availWidth <= 992 && window.screen.availWidth >= 768) {
+	
+				countShowSlides = 2;
+				curr();
+				past();
+				next();
+			
+	
+			}
+			if (window.screen.availWidth <= 767) {
+	
+				countShowSlides = 1;
+				curr();
+				past();
+				next();
+				
+	
+			}
+		});
+
+
+
+
+		const activeItem = document.querySelector('#item-active');
+		const leftItem = document.querySelector('#item-left');
+		const rightItem = document.querySelector('#item-right');
 
 		//Начальная инициализация массива
 		function init() {
@@ -435,11 +505,14 @@ document.addEventListener('DOMContentLoaded', () => {
 					i--;
 				}
 			}
+			console.log('Init past',pastArr);
+			console.log('Init curr',currArr);
+			console.log('Init next',nextArr);
 		}
 		init();
-		console.log('past',pastArr);
-		console.log('curr',currArr);
-		console.log('next',nextArr);
+		// console.log('past',pastArr);
+		// console.log('curr',currArr);
+		// console.log('next',nextArr);
 
 		//Прокрутка вправо. Клик право. Лента едет влево
 		function forward() {
@@ -448,6 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			pastArr.push(...currArr);
 			currArr = [];
 			currArr.push(...nextArr);
+			nextArr = [];
 			//генерация массива next
 			for (let i = 0; i < countShowSlides; i++) {
 				let randomNumber = Math.floor(Math.random() * 8);
@@ -457,6 +531,9 @@ document.addEventListener('DOMContentLoaded', () => {
 					i--;
 				}
 			}
+			console.log('forward past',pastArr);
+			console.log('forward curr',currArr);
+			console.log('forward next',nextArr);
 		}
 		// forward();
 		// console.log('Forward_____');
@@ -466,6 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		//Смена направления назад.Т.е. клик влево, клик вправо. прокрутка влево
 		function changeToBackward() {
+			console.log('changeToBackward');
 			let tmp = [];
 			tmp.push(...pastArr);
 			pastArr = [];
@@ -505,6 +583,9 @@ document.addEventListener('DOMContentLoaded', () => {
 					i--;
 				}
 			}
+			console.log('backward past',pastArr);
+			console.log('backward curr',currArr);
+			console.log('backward next',nextArr);
 		}
 
 		// backward();
@@ -514,6 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// console.log('next',nextArr);
 
 		function changeToForward() {
+			console.log('changeToForward');
 			let tmp = [];
 			tmp.push(...nextArr);
 			nextArr = [];
@@ -538,193 +620,134 @@ document.addEventListener('DOMContentLoaded', () => {
 		// console.log('next',nextArr);
 
 
+		function curr() {
+			currArr.forEach(item => {
+				let newItem = document.createElement('div');
+				newItem.classList.add('slider__item');
+				newItem.innerHTML = `
+				<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
+				<div class="slider__name-pet">${petsData[item].name}</div>
+				<button class="button button_hover slider__button">Learn more</button>
+			`;
 
-		currArr.forEach(item => {
-			let newItem = document.createElement('div');
-			newItem.classList.add('slider__item');
-			newItem.innerHTML = `
-			<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
-			<div class="slider__name-pet">${petsData[item].name}</div>
-			<button class="button button_hover slider__button">Learn more</button>
-		`;
-			document.querySelector('#item-active').appendChild(newItem);
-		});
+				//Popap
+				newItem.addEventListener('click', () => {
+					console.log(item);
+					document.querySelector('.modal__dialog').innerHTML = '';
+					openModal(item + 1);
+				});
+				
+				document.querySelector('#item-active').appendChild(newItem);
+				console.log('curr', petsData[item]);
+			});
+		}
 
-		pastArr.forEach(item => {
-			let newItem = document.createElement('div');
-			newItem.classList.add('slider__item');
-			newItem.innerHTML = `
-			<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
-			<div class="slider__name-pet">${petsData[item].name}</div>
-			<button class="button button_hover slider__button">Learn more</button>
-		`;
-			document.querySelector('#item-left').appendChild(newItem);
-		});
+		function past() {
+			pastArr.forEach(item => {
+				let newItem = document.createElement('div');
+				newItem.classList.add('slider__item');
+				newItem.innerHTML = `
+				<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
+				<div class="slider__name-pet">${petsData[item].name}</div>
+				<button class="button button_hover slider__button">Learn more</button>
+			`;
 
-		nextArr.forEach(item => {
-			let newItem = document.createElement('div');
-			newItem.classList.add('slider__item');
-			newItem.innerHTML = `
-			<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
-			<div class="slider__name-pet">${petsData[item].name}</div>
-			<button class="button button_hover slider__button">Learn more</button>
-		`;
-			document.querySelector('#item-right').appendChild(newItem);
-		});
-
-
-		// prevButton.addEventListener('click', () => {
-		// 	console.log('click');
-		// 	backward();
-		// 	console.log('past',pastArr);
-		// 	console.log('curr',currArr);
-		// 	console.log('next',nextArr);
+				//Popap
+				// newItem.addEventListener('click', () => {
+				// 	console.log(item.id);
+				// 	document.querySelector('.modal__dialog').innerHTML = '';
+				// 	openModal(item.id);
+				// });
 
 
-		// });
+
+				document.querySelector('#item-left').appendChild(newItem);
+				console.log('past', petsData[item]);
+			});
+		}
+
+		function next() {
+			nextArr.forEach(item => {
+				let newItem = document.createElement('div');
+				newItem.classList.add('slider__item');
+				newItem.innerHTML = `
+				<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
+				<div class="slider__name-pet">${petsData[item].name}</div>
+				<button class="button button_hover slider__button">Learn more</button>
+			`;
+
+				//Popap
+				// newItem.addEventListener('click', () => {
+				// 	console.log(item.id);
+				// 	document.querySelector('.modal__dialog').innerHTML = '';
+				// 	openModal(item.id);
+				// });
+
+
+				document.querySelector('#item-right').appendChild(newItem);
+				console.log('next', petsData[item]);
+			});
+				
+		}
+		// curr();
+		// past();
+		// next();
+
+
+		// curr();
+		// past();
+		// next();
+
+
+
+
 
 
 		prevButton.addEventListener('click', () => {
 			slider.classList.add('transition-left');
+			backward();
 		});
 
 		nextButton.addEventListener('click', () => {
 			slider.classList.add('transition-right');
+			forward();
 		});
 
 
 		slider.addEventListener('animationend', (animation) => {
 
+			// let changedItem;
 
 			if(animation.animationName === 'move-left' || animation.animationName === 'move-left768' || animation.animationName === 'move-left320') {
 
-
-				backward();
-
 				slider.classList.remove('transition-left');
-				let leftItem = document.querySelector('#item-left').innerHTML;
-				let activeItem = document.querySelector('#item-active').innerHTML;
 
-				document.querySelector('#item-active').innerHTML = leftItem;
-				document.querySelector('#item-right').innerHTML = activeItem;
-
-				document.querySelector('#item-left').innerHTML = '';
+				activeItem.innerHTML = '';
+				leftItem.innerHTML = '';
+				rightItem.innerHTML = '';
 
 
+				curr();
+				past();
+				next();
 
-
-				currArr.forEach(item => {
-					let newItem = document.createElement('div');
-					newItem.classList.add('slider__item');
-					newItem.innerHTML = `
-					<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
-					<div class="slider__name-pet">${petsData[item].name}</div>
-					<button class="button button_hover slider__button">Learn more</button>
-				`;
-					document.querySelector('#item-active').appendChild(newItem);
-				});
-
-				pastArr.forEach(item => {
-					let newItem = document.createElement('div');
-					newItem.classList.add('slider__item');
-					newItem.innerHTML = `
-					<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
-					<div class="slider__name-pet">${petsData[item].name}</div>
-					<button class="button button_hover slider__button">Learn more</button>
-				`;
-					document.querySelector('#item-left').appendChild(newItem);
-				});
-
-				nextArr.forEach(item => {
-					let newItem = document.createElement('div');
-					newItem.classList.add('slider__item');
-					newItem.innerHTML = `
-					<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
-					<div class="slider__name-pet">${petsData[item].name}</div>
-					<button class="button button_hover slider__button">Learn more</button>
-				`;
-					document.querySelector('#item-right').appendChild(newItem);
-				});
-
-				// for (let i = 0; i < countOfSlides; i++) {
-
-				// 	let itemLeft = document.createElement('div');
-				// 	itemLeft.classList.add('slider__item');
-				// 	itemLeft.innerHTML = `
-				// 		<img src="${newDataForSecondClick[lastRandomValueForSecond[i]].img}" alt="pet_photo" class="slider__img-pet">
-				// 		<div class="slider__name-pet">${newDataForSecondClick[lastRandomValueForSecond[i]].name}</div>
-				// 		<button class="button button_hover slider__button">Learn more</button>
-				// 	`;
-
-				// 	document.querySelector('#item-left').appendChild(itemLeft);
-				// }
+				
 			}
-			if(animation.animationName === 'move-right' || animation.animationName === 'move-right768' || animation.animationName === 'move-right320') {
 
-				console.log(animation.animationName);
-				forward();
+			if(animation.animationName === 'move-right' || animation.animationName === 'move-right768' || animation.animationName === 'move-right320') {
 
 				slider.classList.remove('transition-right');
 
-				let rightItem = document.querySelector('#item-right').innerHTML;
-				let activeItem = document.querySelector('#item-active').innerHTML;
-
-				document.querySelector('#item-active').innerHTML = rightItem;
-				document.querySelector('#item-left').innerHTML = activeItem;
+				activeItem.innerHTML = '';
+				leftItem.innerHTML = '';
+				rightItem.innerHTML = '';
 
 
+				curr();
+				past();
+				next();
+		
 
-				document.querySelector('#item-right').innerHTML = '';
-
-
-				// currArr.forEach(item => {
-				// 	let newItem = document.createElement('div');
-				// 	newItem.classList.add('slider__item');
-				// 	newItem.innerHTML = `
-				// 	<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
-				// 	<div class="slider__name-pet">${petsData[item].name}</div>
-				// 	<button class="button button_hover slider__button">Learn more</button>
-				// `;
-				// 	document.querySelector('#item-active').appendChild(newItem);
-				// });
-
-				// pastArr.forEach(item => {
-				// 	let newItem = document.createElement('div');
-				// 	newItem.classList.add('slider__item');
-				// 	newItem.innerHTML = `
-				// 	<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
-				// 	<div class="slider__name-pet">${petsData[item].name}</div>
-				// 	<button class="button button_hover slider__button">Learn more</button>
-				// `;
-				// 	document.querySelector('#item-left').appendChild(newItem);
-				// });
-
-				// nextArr.forEach(item => {
-				// 	let newItem = document.createElement('div');
-				// 	newItem.classList.add('slider__item');
-				// 	newItem.innerHTML = `
-				// 	<img src="${petsData[item].img}" alt="pet_photo" class="slider__img-pet">
-				// 	<div class="slider__name-pet">${petsData[item].name}</div>
-				// 	<button class="button button_hover slider__button">Learn more</button>
-				// `;
-				// 	document.querySelector('#item-right').appendChild(newItem);
-				// });
-
-
-
-				// for (let i = 0; i < countOfSlides; i++) {
-
-				// 	let itemRight = document.createElement('div');
-				// 	itemRight.classList.add('slider__item');
-				// 	itemRight.innerHTML = `
-				// 		<img src="${newDataForSecondClick[lastRandomValueForSecond[i]].img}" alt="pet_photo" class="slider__img-pet">
-				// 		<div class="slider__name-pet">${newDataForSecondClick[lastRandomValueForSecond[i]].name}</div>
-				// 		<button class="button button_hover slider__button">Learn more</button>
-				// 	`;
-
-
-				// 	document.querySelector('#item-right').appendChild(itemRight);
-				// }
 			}
 
 
@@ -737,6 +760,58 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	main();
+
+
+	
+	// // Popap
+	const modal = document.querySelector('.modal');
+
+	modal.addEventListener('click', (e) => {
+		if (e.target === modal) {
+			modal.classList.remove('modal__active');
+			body.classList.remove('no-scroll');
+		}
+	});
+
+	async function openModal(id) {
+		const data = await getPets();
+		console.log(data[id - 1]);
+
+		body.classList.add('no-scroll');
+
+		modal.classList.add('modal__active');
+		let modalWrapper = document.createElement('div');
+		modalWrapper.classList.add('modal__wrapper');
+		modalWrapper.innerHTML = `
+			<img src="${data[id - 1].img}" alt="img_pet" class="modal__img">
+			<div class="modal__content">
+				<h2 class="modal__title">${data[id - 1].name}</h2>
+				<div class="modal__subtitle">${data[id - 1].type} - ${data[id - 1].breed}</div>
+				<div class="modal__description">${data[id - 1].description}</div>
+				<ul class="pets__list">
+					<li class="pets__item">
+						<span>Age:</span> ${data[id - 1].age}
+					</li>
+					<li class="pets__item">
+						<span>Inoculation:</span> ${data[id - 1].inoculations}
+					</li>
+					<li class="pets__item">
+						<span>Diseases:</span> ${data[id - 1].diseases}
+					</li>
+					<li class="pets__item">
+						<span>Parasites:</span> ${data[id - 1].parasites}
+					</li>
+				</ul>
+			</div>
+			<button class="modal__close"><img src="../../assets/close.svg" alt="close"></button>
+		`;
+		document.querySelector('.modal__dialog').appendChild(modalWrapper);
+
+		document.querySelector('.modal__close').addEventListener('click', () => {
+			modal.classList.remove('modal__active');
+			body.classList.remove('no-scroll');
+		});
+	}
 
 
 });
