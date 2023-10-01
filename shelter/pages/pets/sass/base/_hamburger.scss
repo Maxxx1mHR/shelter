@@ -1,0 +1,85 @@
+// .hamburger {
+//     display: none;
+//     position: relative;
+//     @include media-tablet-small {
+//         display: block;
+//         width: 30px;
+//         height: 2px;
+//         background-color: $color-dark;
+//         &::before, &::after {
+//             content: '';
+//             position: absolute;
+//             width: 30px;
+//             height: 2px;
+//             background-color: $color-dark;
+//         }
+//         &::before{
+//             top: 10px;
+//         }
+//         &::after {
+//             top: -10px;
+//         }
+//     }
+// }
+
+
+// span{
+//     display: block;
+//     width: 30px;
+//     height: 2px;
+//     background-color: $color-primary;
+//     &::before {
+//         content: '';
+//         position: absolute;
+//         top: 20px;
+//         width: 30px;
+//         height: 2px;
+//         background-color: $color-primary;
+//     }
+// }
+
+.hamburger {
+    display: none;
+    @include media-tablet-small {
+        display: block;
+        position: fixed;
+        top: 50px;
+        right: 20px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: all 0.5s;
+        &_active {
+            transition: all 0.5s;
+            transform: rotate(90deg);
+         }
+    }
+    z-index: 2;
+
+}
+
+.hamburger-icon {
+    top: 10px;
+    width: 30px;
+    height: 2px;
+    background: #FCFCFC;
+    position: absolute;
+    background-color: $color-dark;
+    transition: all 0.5s;
+    &::before, &::after {
+        content: '';
+        position:absolute;
+        width: 30px;
+        height: 2px;
+        background-color: $color-dark;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.5s;
+    }
+    &::before{
+        top: 10px;
+    }
+    &::after {
+        top: -10px;
+    }
+
+}

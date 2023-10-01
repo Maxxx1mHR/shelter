@@ -1,0 +1,13 @@
+%font-prim {
+    font-family: 'Arial', sans-serif;
+}
+
+%font-add {
+    font-family: 'Georgia', sans-serif;
+}
+
+%cursor-hover {
+    &:hover {
+        cursor: url("../../../assets/icons/cursors/cursor_active.svg"), auto;
+    }
+}

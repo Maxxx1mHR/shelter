@@ -1,0 +1,44 @@
+.header {
+    padding-top: 30px;
+}
+
+.header__wrapper {
+    position: relative;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include media-laptop {
+        padding: 0 30px;
+    }
+    @include media-tablet-small {
+        padding: 0 20px;
+    }
+}
+
+.header__logo-name {
+    position: relative;
+    color: $color-primary;
+    @extend %font-add;
+    @include font($size: 3.2rem, $height: 3.5rem);
+    letter-spacing: 2px;
+    text-decoration: none;
+    @extend %cursor-hover;
+    &:before {
+        top: 37px;
+    }
+}
+
+.header__subtitle {
+    margin: 10px 0 0 2px;
+    color: $color-light;
+    @include font($size: 1.3rem, $height: 1.5rem,);
+    letter-spacing: 1.5px;
+}
+
+.header__navigation {
+    @include media-tablet-small {
+        // display: none;
+
+    }
+}

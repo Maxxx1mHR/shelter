@@ -1,0 +1,205 @@
+.slider {
+
+    // display: flex;
+    // align-items: center;
+    // flex-wrap: wrap;
+    position: relative;
+    padding: 60px 0;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    // align-items: center;
+    // @include media-tablet-small {
+    //     padding: 42px 0 114px 0;
+    // }
+    @include media-laptop {
+        padding: 42px 0 114px 0;
+    }
+
+}
+
+.slider__wrapper {
+    // padding: 0 53px;
+    // column-gap: 90px;
+
+
+    // padding: 0 145px;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    // @include media-laptop {
+    //     padding: 0 90px;
+    // }
+    // @include media-tablet {
+    //     padding: 0 94px;
+    // }
+    // @include media-tablet-small {
+    //     padding: 0 10px;
+    // }
+    // @include media-mobile {
+    //     justify-content: center
+    // }
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    // padding: 0 145px;
+    width: 990px;
+    overflow: hidden;
+    margin: 0 auto;
+    @include media-tablet {
+        width: 630px;
+    }
+    @include media-tablet-small {
+        width: 320px;
+    }
+}
+
+
+.slider__wrapper-inner {
+    position: relative;
+    left: -990px;
+    //
+    // padding: 0 145px;
+    // gap: 90px;
+    display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    // transition: transform 1.5s;
+    // flex-wrap: nowrap;
+    @include media-laptop {
+        // padding: 0 90px;
+    }
+    @include media-tablet {
+        gap: 40px;
+        left: -580px;
+        // padding: 0 94px;
+    }
+    @include media-tablet-small {
+        // gap: 0;
+        left: -270px;
+        // padding: 0 10px;
+    }
+    @include media-mobile {
+        // justify-content: center
+    }
+}
+
+.slider__section {
+    display: flex;
+    gap: 90px;
+    @include media-tablet {
+        gap: 40px;
+    }
+    @include media-tablet-small {
+        // gap: 0;
+    }
+}
+
+@keyframes move-right {
+    from {left: -990px;}
+    to {left:-1980px;}
+  }
+
+  @keyframes move-right768 {
+    from {left: -580px;}
+    to {left: -1160px;}
+  }
+
+  @keyframes move-right320 {
+    from {left: -270px;}
+    to {left: -540px;}
+  }
+
+
+
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 1s;
+    @include media-tablet {
+        animation-name: move-right768;
+    }
+    @include media-tablet-small {
+        animation-name: move-right320;
+    }
+  }
+
+  @keyframes move-left {
+    from {left: -990px;}
+    to {left: 0px;}
+  }
+
+  @keyframes move-left768 {
+    from {left: -580px;}
+    to {left: 0px;}
+  }
+
+  @keyframes move-left320 {
+    from {left: -270px;}
+    to {left: 0px;}
+  }
+
+
+
+  .transition-left {
+    animation-name: move-left;
+    animation-duration: 1s;
+    @include media-tablet {
+        animation-name: move-left768;
+    }
+    @include media-tablet-small {
+        animation-name: move-left320;
+    }
+  }
+
+.slider__item {
+    @extend %cursor-hover;
+    background-color: $color-active;
+    border-radius: 9px;
+    transition: background-color .5s, box-shadow .5s;
+    &:hover {
+        background-color: $color-light;
+        box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+    }
+    @include media-tablet {
+        &:nth-child(3) {
+            // display: none;
+        }
+    }
+    @include media-mobile {
+        &:nth-child(2) {
+            // display: none;
+        }
+    }
+}
+
+.slider__img-pet {
+    transition: background-color .5s;
+    border-top-right-radius: 9px;
+    border-top-left-radius: 9px;
+}
+
+.slider__item:hover .button_hover{
+    background-color: $color-background-light;
+    border: 2px solid $color-primary-light;
+    background-color: $color-primary-light;
+}
+
+
+.slider__name-pet {
+    @extend %font-add;
+    @include font($size: 2rem, $height: 2rem);
+    color: $color-dark-main;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.slider__button {
+    padding: 15px 45px;
+    display: block;
+    margin: 30px auto;
+}
+
+.our-friends__button {
+    display: block;
+    margin: 0 auto;
+}
+

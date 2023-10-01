@@ -1,0 +1,106 @@
+.footer {
+    padding-top: 40px;
+    @include media-tablet {
+        padding-top: 30px;
+    }
+}
+.footer__wrapper {
+    display: flex;
+    padding: 0 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @include media-tablet {
+        padding: 0 64px;
+    }
+    @include media-tablet-small {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+    }
+}
+
+.footer__contacts {
+    max-width: 278px;
+    .footer__link {
+        // padding: 0 25px;
+        @include media-tablet-small {
+            justify-content: center;
+        }
+    }
+}
+.footer__address {
+    max-width: 302px;
+    @include media-tablet-small {
+        margin-top: 40px;
+    }
+}
+
+.footer__address .footer__links li a{
+    margin-top: 34px;
+    @include media-mobile {
+        margin-top: 37px;
+    }
+}
+
+.footer__title {
+    margin-top: 16px;
+    @extend %font-add;
+    @include font($size: 3.5rem, $height: 4.5rem);
+    letter-spacing: 2px;
+    color: $color-light;
+    @include media-tablet {
+        margin: 0;
+    }
+    @include media-mobile {
+        padding: 0 25px;
+        @include font($size: 2.5rem, $height: 3.3rem);
+        letter-spacing: 1.5px;
+        text-align: center;
+    }
+}
+
+.footer__links {
+    list-style-type: none;
+    @extend %font-add;
+    @include font($size: 2rem, $height: 2.3rem);
+    letter-spacing: 1px;
+    // li {
+    //     display: flex;
+    //     justify-content: flex-start;
+    //     align-items: center;
+    //     margin-top: 43px;
+    // }
+
+
+
+}
+
+.footer__icon {
+    margin-right: 20px;
+}
+
+.footer__link {
+    position: relative;
+    display: flex;
+    margin-top: 43px;
+    text-decoration: none;
+    color: $color-primary;
+    transition: transform .5s;
+    align-items: center;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.footer__img {
+    width: 100%;
+    max-width: 300px;
+   @include media-tablet {
+        margin: 0 auto;
+        margin-top: 65px;
+   }
+   @include media-mobile {
+        margin-top: 40px;
+        max-width: 260px;
+   }
+}
